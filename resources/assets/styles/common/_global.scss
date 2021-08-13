@@ -1,0 +1,13 @@
+body {
+  background-image: url("../images/bg1.jpg");
+  background-size: 122%;
+  background-repeat: no-repeat;
+  background-position-y: 24%;
+}
+
+.trans-borderline::after {
+  content: "";
+  width: 100%;
+  border-top: 1px solid $whitetrans;
+  display: block;
+}

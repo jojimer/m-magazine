@@ -134,6 +134,13 @@ add_action('after_setup_theme', function () {
      * Create @fa_icon() Blade directive
      */
     sage('blade')->compiler()->directive('fa_icon', function ($expression) {
-            return "<i class=\"far fa-{{ $expression }}\"></i>";
-        });
+        return "<i class=\"far fa-{{ $expression }}\"></i>";
+    });
+
+    /**
+     * Create @divider() Blade directive
+     */
+    sage('blade')->compiler()->directive('divider', function ($padding) {
+        return "<div class=\"trans-borderline {{ $padding }}\"></div>";
+    });
 });

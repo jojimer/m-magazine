@@ -4,11 +4,11 @@
 
     &.active {
       background-color: #404e63;
-      border-bottom: 0.25rem solid $primary;
+      border-bottom: 0.35rem solid $primary;
 
       .nav-link {
         padding: 1.25rem 1rem;
-        padding-bottom: 1.25rem - 0.25rem;
+        padding-bottom: 1.25rem - 0.35rem;
       }
     }
 

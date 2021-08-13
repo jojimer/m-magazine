@@ -13,6 +13,34 @@ $light: #e8f1f7;
 $bluetrans: rgba(74, 88, 110, 0.96);
 $whitetrans: rgba(232, 241, 247, 0.25);
 
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px,
+  // Super Extra large screen / wide desktop
+  sxl: 1320px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  sxl: 1440px
+);
+
+@mixin component-box($color) {
+  border-radius: 10px;
+  background-color: $color;
+}
+
 @mixin flex-content($justify, $align) {
   display: flex;
   justify-content: $justify;
