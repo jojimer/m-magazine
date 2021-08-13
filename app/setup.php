@@ -143,4 +143,18 @@ add_action('after_setup_theme', function () {
     sage('blade')->compiler()->directive('divider', function ($padding) {
         return "<div class=\"trans-borderline {{ $padding }}\"></div>";
     });
+
+    /**
+     * Create @content_counter() Blade directive
+     */
+    sage('blade')->compiler()->directive('content_counter', function ($expression) {
+        $params = explode(",", $expression);
+        $counter = "<div class=\"float-right\">";
+        $spacer = (strlen($params[0]) === 1) ? "single-number" : "";
+        $counter .= ($params[0] > 0) ? "<span class=\"bg-danger content_counter $spacer\">{{ $params[0] }}</span>" : "";
+        $spacer = (strlen($params[1]) === 1) ? "single-number" : "";
+        $counter .= ($params[1] > 0) ? "<span class=\"bg-success content_counter $spacer\">{{ $params[1] }}</span>" : "";
+        $counter .= "</div>";
+        return $counter;
+    });
 });

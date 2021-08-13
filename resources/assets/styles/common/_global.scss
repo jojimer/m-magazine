@@ -3,6 +3,9 @@ body {
   background-size: 122%;
   background-repeat: no-repeat;
   background-position-y: 24%;
+  background-color: $warning;
+  background-blend-mode: saturation;
+  color: #fff;
 }
 
 .trans-borderline::after {
@@ -10,4 +13,22 @@ body {
   width: 100%;
   border-top: 1px solid $whitetrans;
   display: block;
+}
+
+.part-title {
+  @extend .h5;
+
+  font-weight: bold;
+}
+
+.content_counter {
+  padding: 0.1rem 0.25rem;
+  margin-top: 0.2rem;
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
+  border-radius: 3px;
+
+  &.single-number {
+    padding: 0.1rem 0.5rem;
+  }
 }
