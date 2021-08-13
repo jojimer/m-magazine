@@ -1,0 +1,51 @@
+.banner {
+  .nav-item {
+    position: relative;
+
+    &.active {
+      background-color: #404e63;
+      border-bottom: 0.25rem solid $primary;
+
+      .nav-link {
+        padding: 1.25rem 1rem;
+        padding-bottom: 1.25rem - 0.25rem;
+      }
+    }
+
+    &:not(.active):not(.second-to-active) {
+      margin-right: 4px;
+    }
+  }
+
+  .nav-item:not(.active):not(.second-to-active) .nav-link::after {
+    content: "";
+    position: absolute;
+    border-right: 0.5px solid $whitetrans;
+    height: 35px;
+    right: -2px;
+  }
+
+  .nav-item:not(.active) .nav-link {
+    @extend .btn-primary;
+
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #51627b;
+    }
+  }
+
+  .icons-wrap {
+    cursor: pointer;
+
+    span:nth-child(1) {
+      font-size: 2rem;
+      margin-right: 1.25rem;
+    }
+
+    span:nth-child(2) {
+      font-size: 2.1rem;
+    }
+  }
+}

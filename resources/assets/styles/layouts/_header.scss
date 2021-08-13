@@ -1,7 +1,39 @@
+.banner {
+  background-color: $dark;
+  color: #fff;
+}
+
+.banner .navbar-brand {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: $warning;
+}
+
+.banner nav {
+  flex-flow: row nowrap;
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+}
+
 .banner .nav li {
   @extend .nav-item;
 }
 
 .banner .nav a {
   @extend .nav-link;
+}
+
+.banner .nav-link {
+  padding: 1.25rem 0.9rem;
+  font-size: 1.25rem;
+}
+
+.banner .icons-wrap {
+  @include flex-content(center,center);
+
+  padding: 0.5rem 0;
+  margin-left: 1.5rem;
+  height: 100%;
 }
