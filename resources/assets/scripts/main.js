@@ -1,6 +1,18 @@
 // import external dependencies
 import 'jquery';
 
+// import then needed Font Awesome functionality
+import { library, dom } from '@fortawesome/fontawesome-svg-core';
+
+// import regular fontawesome
+import { faBell, faCommentAlt } from '@fortawesome/free-regular-svg-icons';
+
+// add the imported icons to the library
+library.add(faBell, faCommentAlt);
+
+// tell FontAwesome to watch the DOM and add the SVGs when it detects icon markup
+dom.watch();
+
 // Import everything from autoload
 import './autoload/**/*'
 

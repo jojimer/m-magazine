@@ -129,4 +129,11 @@ add_action('after_setup_theme', function () {
     sage('blade')->compiler()->directive('asset', function ($asset) {
         return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
     });
+
+    /**
+     * Create @fa_icon() Blade directive
+     */
+    sage('blade')->compiler()->directive('fa_icon', function ($expression) {
+            return "<i class=\"far fa-{{ $expression }}\"></i>";
+        });
 });
