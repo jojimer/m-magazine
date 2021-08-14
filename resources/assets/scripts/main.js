@@ -4,11 +4,14 @@ import 'jquery';
 // import then needed Font Awesome functionality
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
+// import solid fontawesome
+import { faFireAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+
 // import regular fontawesome
-import { faBell, faCommentAlt, faMoon, faSquare, faCheckSquare } from '@fortawesome/free-regular-svg-icons';
+import { faBell, faCommentAlt, faSquare, faCheckSquare, faComments } from '@fortawesome/free-regular-svg-icons';
 
 // add the imported icons to the library
-library.add(faBell, faCommentAlt, faMoon, faSquare, faCheckSquare);
+library.add(faBell, faCommentAlt, faFireAlt, faSquare, faCheckSquare, faComments, faHeart);
 
 // tell FontAwesome to watch the DOM and add the SVGs when it detects icon markup
 dom.watch();

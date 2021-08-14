@@ -1,0 +1,30 @@
+div.news-headline-block {
+  @include component-box(#fff);
+
+  width: 100%;
+  height: 600px;
+
+  img {
+    width: 100%;
+  }
+
+  margin-bottom: 4px;
+  background-size: cover;
+}
+
+div.news-preview {
+  padding: 4px 0;
+  margin-bottom: 4px;
+
+  div {
+    @include component-box(#fff);
+
+    height: 250px;
+    background-size: cover;
+
+    &:nth-child(1),
+    &:nth-child(2) {
+      margin-right: 8px;
+    }
+  }
+}

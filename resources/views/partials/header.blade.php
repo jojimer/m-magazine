@@ -1,7 +1,7 @@
 <header class="banner">
   <div class="container">
     <nav class="navbar justify-content-between p-0">
-        <a class="navbar-brand py-0 px-4" href="/">@fa_icon('moon')</a>
+        <a class="navbar-brand py-0 px-4" href="/">@fas_icon('fire-alt')</a>
         <ul class="navbar-nav">
           <li class="nav-item second-to-active">            
             <span class="nav-link">All</span>
@@ -18,10 +18,10 @@
           <li class="nav-item">
             <div class="icons-wrap">
               <span class="icon-holder">
-                @fa_icon('comment-alt')
+                @far_icon('comment-alt')
               </span>
               <span class="icon-holder">
-                @fa_icon('bell')
+                @far_icon('bell')
               </span>
             </div>
           </li>

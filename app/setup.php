@@ -131,10 +131,17 @@ add_action('after_setup_theme', function () {
     });
 
     /**
-     * Create @fa_icon() Blade directive
+     * Create @far_icon() Blade directive
      */
-    sage('blade')->compiler()->directive('fa_icon', function ($expression) {
+    sage('blade')->compiler()->directive('far_icon', function ($expression) {
         return "<i class=\"far fa-{{ $expression }}\"></i>";
+    });
+
+    /**
+     * Create @fas_icon() Blade directive
+     */
+    sage('blade')->compiler()->directive('fas_icon', function ($expression) {
+        return "<i class=\"fas fa-{{ $expression }}\"></i>";
     });
 
     /**
