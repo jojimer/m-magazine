@@ -11,14 +11,33 @@
 		</div>
 	</div>
 </div>
+
 <div class="news-preview row m-0 gx-1">
 	<div class="col" style="background-image: url(@asset('./images/news2.png'));">
-		<p class="p-5"></p>
+		<h2 class="news-title">Lorem ipsum dolor, sit amet</h2>
+		<div class="news-meta">
+			<div class="dv-wrap">
+				<span>August 15, 2021</span>
+				<span>@fas_icon('eye') 12</span>
+			</div>
+		</div>
 	</div>
 	<div class="col" style="background-image: url(@asset('./images/news3.png'));">
-		<p class="p-5"></p>
+		<h2 class="news-title">Lorem ipsum dolor, sit amet</h2>
+		<div class="news-meta">
+			<div class="dv-wrap">
+				<span>August 15, 2021</span>
+				<span>@fas_icon('eye') 12</span>
+			</div>
+		</div>
 	</div>
 	<div class="col" style="background-image: url(@asset('./images/news4.png'));">
-		<p class="p-5"></p>
+		<h2 class="news-title">Lorem ipsum dolor, sit amet</h2>
+		<div class="news-meta">
+			<div class="dv-wrap">
+				<span>August 15, 2021</span>
+				<span>@fas_icon('eye') 12</span>
+			</div>
+		</div>
 	</div>
 </div>

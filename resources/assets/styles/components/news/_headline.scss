@@ -46,7 +46,7 @@ div.news-headline-block {
         font-weight: 300;
 
         span:first-child {
-          padding: 0 0.5rem;
+          padding-right: 0.15rem;
         }
 
         span:last-child {
@@ -61,21 +61,4 @@ div.news-headline-block {
 
   margin-bottom: 4px;
   background-size: cover;
-}
-
-div.news-preview {
-  padding: 4px 0;
-  margin-bottom: 4px;
-
-  div {
-    @include component-box(#fff);
-
-    height: 250px;
-    background-size: cover;
-
-    &:nth-child(1),
-    &:nth-child(2) {
-      margin-right: 8px;
-    }
-  }
 }
