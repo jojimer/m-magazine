@@ -1,9 +1,9 @@
 div.news-preview {
   padding: 4px 0;
-  margin-bottom: 4px;
+  margin-bottom: 4px !important;
 
   > div.col {
-    @include component-box(rgba(0, 0, 0, 0.15));
+    @include component-box(rgba(0, 0, 0, 0.25));
 
     height: 250px;
     background-size: cover;
@@ -19,17 +19,18 @@ div.news-preview {
     .news-title {
       font-family: Amethysta, sans-serif;
       display: inline-block;
-      height: 76%;
+      height: 80%;
       padding: 1.5rem 4rem 0 1.5rem;
     }
 
     div.news-meta {
       background-color: $light;
-      padding: 0.85rem 0.5rem 0.85rem 1.5rem;
+      padding: 0.6rem 1.5rem;
+      position: relative;
 
       div.dv-wrap {
         font-weight: 300;
-        text-align: right;
+        text-align: left;
         padding: 0 0.25rem;
 
         span:first-child {
@@ -41,10 +42,10 @@ div.news-preview {
         span:last-child {
           color: #fff;
           background-color: $dark;
-          padding: 0.25rem 0.5rem;
-          border-radius: 5px;
-          float: right;
-          margin-top: -0.25rem;
+          padding: 0.6rem 0.75rem;
+          position: absolute;
+          right: 0;
+          top: 0;
         }
       }
     }

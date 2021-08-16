@@ -1,6 +1,9 @@
 .banner {
   background-color: $dark;
   color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
 }
 
 .banner .navbar-brand {

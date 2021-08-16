@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="row g-2" id="top-feed">
+	<div class="row g-2 mt-5" id="top-feed">
 		<div class="col-3">
 		<div class="blue-box-component">
 			@include('component::profile-box')
@@ -13,7 +13,8 @@
 		</div>
 		</div>
 		<div class="col-9">
-			@include('component::news.headline')
+			@include('component::news.feed')
+			@include('component::gallery.feed')
 		</div>
 	</div>
 @endsection
