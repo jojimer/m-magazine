@@ -10,13 +10,13 @@
             <span class="nav-link">News</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link">Field Report</span>
-          </li>
-          <li class="nav-item">
             <span class="nav-link">Gallery</span>
           </li>
           <li class="nav-item">
             <span class="nav-link">Shop</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link">Field Report</span>
           </li>
           <li class="nav-item">
             <div class="icons-wrap">

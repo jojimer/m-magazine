@@ -15,6 +15,9 @@
 		<div class="col-9">
 			@include('component::news.feed')
 			@include('component::gallery.feed')
+			@include('component::shop.hero')
+			@include('component::shop.gender-block')
+			@include('component::field-report.feed')
 		</div>
 	</div>
 @endsection

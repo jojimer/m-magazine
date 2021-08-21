@@ -1,4 +1,4 @@
-<div class="gallery-headline-block mm-gallery">
+<div class="gallery-feed-block mm-gallery">
 	<p class="h2">Month of August</p>
 	<div class="gallery-preview-images">
 		<ol>

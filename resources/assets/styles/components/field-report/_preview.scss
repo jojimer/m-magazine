@@ -1,0 +1,17 @@
+.field-report-block {
+  @include component-box($light);
+
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+
+  .content-preview {
+    width: 70%;
+    background-size: cover;
+  }
+
+  .content-meta-info {
+    width: 30%;
+  }
+}
