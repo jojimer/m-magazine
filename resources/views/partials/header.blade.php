@@ -3,20 +3,20 @@
     <nav class="navbar justify-content-between p-0">
         <a class="navbar-brand py-0 px-4" href="/">@fas_icon('fire-alt')</a>
         <ul class="navbar-nav">
-          <li class="nav-item second-to-active">            
-            <span class="nav-link">All</span>
-          </li>
-          <li class="nav-item active">
-            <span class="nav-link">News</span>
+          <li class="nav-item">            
+            <a href="/" class="nav-link">All</a>
           </li>
           <li class="nav-item">
-            <span class="nav-link">Gallery</span>
+            <a href="/news" class="nav-link">News</a>
           </li>
           <li class="nav-item">
-            <span class="nav-link">Shop</span>
+            <a href="/gallery" class="nav-link">Gallery</a>
           </li>
           <li class="nav-item">
-            <span class="nav-link">Field Report</span>
+            <a href="/shop" class="nav-link">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a href="/field-report" class="nav-link">Field Report</a>
           </li>
           <li class="nav-item">
             <div class="icons-wrap">

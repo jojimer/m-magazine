@@ -23,7 +23,7 @@
 		</div>
 		<div class="content-tags">
 			<p class="font-weight-bold">Tags</p>
-			<p class="fr-tags"><span>#Canyon</span> <span>#National Park</span></p>
+			<p class="fr-tags"><span>#Travel</span> <span>#National Park</span></p>
 		</div>
 		<div class="content-images-preview">
 			<p class="font-weight-bold">More Images</p>

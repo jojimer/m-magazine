@@ -76,10 +76,12 @@
     "yargs": "~11.0.0"
   },
   "dependencies": {
+    "@barba/core": "^2.9.7",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "bootstrap": "v4.3.1",
+    "gsap": "^3.7.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7"
   }
