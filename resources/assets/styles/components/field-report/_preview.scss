@@ -5,13 +5,113 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 8px;
+  overflow: hidden;
 
   .content-preview {
-    width: 70%;
+    width: 65%;
     background-size: cover;
+    padding: 3rem 2rem;
+    background-color: rgba(0, 0, 0, 0.15);
+    background-blend-mode: overlay;
+
+    .fr-main-info-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: end;
+      height: 100%;
+
+      .profile-picture {
+        width: 85px;
+        border-radius: 50%;
+      }
+
+      .fr-info {
+        margin-left: 1rem;
+
+        p {
+          margin-bottom: 0;
+
+          &.h2 {
+            font-family: Amethysta, sans-serif;
+            margin-bottom: 8px;
+            margin-top: 5px;
+          }
+
+          &.h5 {
+            line-height: 10px;
+          }
+        }
+      }
+
+      .fr-date {
+        margin-left: auto;
+        align-self: end;
+
+        p {
+          margin-bottom: 2px;
+        }
+      }
+
+      .profile-picture img {
+        width: 100%;
+        border-radius: 50%;
+        border: 4px solid #fff;
+      }
+    }
   }
 
   .content-meta-info {
-    width: 30%;
+    width: 35%;
+    color: $dark;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    padding: 1rem;
+
+    span.fr-see-more {
+      font-family: sans-serif;
+      font-weight: 300;
+      cursor: pointer;
+      display: block;
+      text-align: right;
+    }
+
+    .fr-tags {
+      span {
+        background-color: $dark;
+        padding: 5px 10px;
+        color: #fff;
+        margin-right: 5px;
+      }
+    }
+
+    .content-images-preview {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+
+        li {
+          width: 60px;
+          height: 60px;
+          list-style: none;
+          margin-right: 5px;
+          margin-bottom: 5px;
+          cursor: pointer;
+
+          &:last-child {
+            font-family: sans-serif;
+            text-align: center;
+            font-weight: 300;
+            padding: 5px 0;
+          }
+
+          img.img-prev {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
   }
 }
