@@ -40,7 +40,7 @@ export default {
       ],
   });
 
-  let initialPage = $('div#main-container').data('barba-namespace');
+  let initialPage = $('div#dynamic-container').data('barba-namespace');
   let next = nav[mainpage[initialPage]];
   let indexOfBeforeActive = mainpage[initialPage];
   let nextToActive = (indexOfBeforeActive > 0)? indexOfBeforeActive-1 : indexOfBeforeActive;
