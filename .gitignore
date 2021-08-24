@@ -9,3 +9,4 @@ yarn-error.log
 /vendor
 resources/assets/config-local.json
 pw.txt
+*.sh
