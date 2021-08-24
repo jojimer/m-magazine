@@ -1,6 +1,6 @@
 <div class="profile-block">
 	<div class="profile-picture">
-		<img src="@asset('./images/pp.png')" alt="profile-name">
+		<img src="@asset('images/pp.png')" alt="profile-name">
 	</div>
 	<div class="profile-info">
 		<p>Activity Log : <span>31</span></p>

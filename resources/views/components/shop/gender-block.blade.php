@@ -1,5 +1,5 @@
 <div class="shop-gender-block">
-	<div class="sgb-left" style="background-image: url(@asset('./images/men-jacket3.jpg'));">
+	<div class="sgb-left" style="background-image: url(@asset('images/men-jacket3.jpg'));">
 	 	<div class="cta-men">
 	 		<div class="cta-men-text">
 	 			<span>New In</span>
@@ -10,7 +10,7 @@
 	 	    </div>
 		</div>
 	</div>
-	<div class="sgb-right" style="background-image: url(@asset('./images/women-jacket.jpg'));">
+	<div class="sgb-right" style="background-image: url(@asset('images/women-jacket.jpg'));">
 	 	<div class="cta-women">
 	 		<div class="cta-women-text">
 	 			<span>New In</span>
