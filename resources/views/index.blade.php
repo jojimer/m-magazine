@@ -1,18 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-  @include('partials.page-header')
-
-  @if (!have_posts())
-    <div class="alert alert-warning">
-      {{ __('Sorry, no results were found.', 'sage') }}
-    </div>
-    {!! get_search_form(false) !!}
-  @endif
-
-  @while (have_posts()) @php the_post() @endphp
-    @include('partials.content-'.get_post_type())
-  @endwhile
-
-  {!! get_the_posts_navigation() !!}
+      @if (Page::slug() == 'home')
+        @include('component::news.feed',["data" => $news_list[0], "thumbnail" => Page::thumbnail($news_list[0]->ID,'large')])
+        @include('component::news.related', ["data" => $news_list])
+        @include('component::gallery.feed')
+        @include('component::shop.hero')
+        @include('component::shop.gender-block')
+        @include('component::field-report.feed')        
+      @endif
 @endsection
