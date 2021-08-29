@@ -91,7 +91,9 @@ Container::getInstance()
         ]);
     }, true);
 
-/*** Remove Default Post Type ***/
+/**
+ *  Remove Default Post Type 
+ */
  
 //Remove from Quick Draft
 add_action( 'wp_dashboard_setup', 'remove_draft_widget', 999 );

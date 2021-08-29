@@ -1,6 +1,6 @@
 div.news-preview {
   padding: 4px 0;
-  margin-bottom: 4px !important;
+  margin-bottom: 8px !important;
 
   > div.col {
     @include component-box(rgba(0, 0, 0, 0.25));
