@@ -1,0 +1,144 @@
+//Single News Column
+body.single-news {
+  #dynamic-container {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+}
+
+// Single News Block
+.news-single-wrap {
+  position: absolute;
+  z-index: 2;
+  translate: 4rem 2rem;
+  padding-bottom: 5rem;
+
+  .news-single-close {
+    color: $dark;
+    font-size: 3rem;
+    position: absolute;
+    right: -4.5rem;
+    top: -2.5rem;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  .news-single-title {
+    display: flex;
+
+    h1 {
+      font-family: Amethysta, sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .news-single-bookmark-wrap {
+      display: flex;
+      align-items: start;
+      flex-wrap: unset;
+
+      .save-bookmark-btn {
+        font-size: 2.5rem;
+        color: $dark;
+        margin-right: 7px;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+
+      span {
+        font-size: 1.5rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 5px;
+        background-color: $dark;
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+
+        svg {
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+
+  .news-single-tags-date {
+    color: $dark;
+    margin-bottom: 1.5rem;
+    text-align: right;
+
+    .news-tags {
+      background-color: $dark;
+      padding: 0.5rem 0.75rem;
+      margin-right: 0.5rem;
+
+      a {
+        color: #fff;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .news-single-block {
+    @extend .news-feed-block;
+
+    position: relative;
+
+    .news-excerpt {
+      width: 100% !important;
+    }
+
+    .external-link-wrap {
+      position: absolute;
+      margin: 0.5rem 1.5rem;
+      top: 0;
+      right: 0;
+      font-size: 2rem;
+
+      .external-link {
+        color: #fff !important;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+
+  .news-single-content {
+    color: $dark;
+    text-align: justify;
+    margin: 2rem 1rem;
+  }
+
+  .comment-body {
+    margin: 2rem;
+  }
+
+  #comments * :not(#submit) {
+    color: $dark;
+  }
+
+  .comment-form .form-submit {
+    text-align: right;
+  }
+
+  .comment-form input[type="submit"] {
+    @extend .btn-dark;
+  }
+}
+
+// Lightbox
+.single-lightbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  top: 70px;
+  left: 0;
+  z-index: 1;
+}

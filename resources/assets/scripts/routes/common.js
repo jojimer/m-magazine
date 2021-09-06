@@ -30,11 +30,13 @@ export default {
             if(nextToActive > -1) $(nav[nextToActive]).addClass('second-to-active');
             $(prev).removeClass('active');
             $(next).addClass('active');
-            console.log(nav[nextToActive],nextToActive);
           },
           enter: function (data) {
-            gsap.from(data.next.container, 1, {opacity: 0});            
-            $('body').addClass(data.next.namespace);
+            gsap.from(data.next.container, 1, {opacity: 0});
+            let classes = data.next.container.dataset.bodyClass;
+            $('body').attr('class', classes);
+            $('a.single-previous-url').attr('href',data.current.url.href);
+            console.log(data.current.url.href);
           },
         },
       ],

@@ -4,7 +4,7 @@
 	</div>
 	<div class="profile-info">
 		<p>Activity Log : <span>31</span></p>
-		<p>Favorites : <span>31</span></p>
+		<p>Bookmarks : <span>31</span></p>
 		<p class="part-title">Simon Crew</p>
 		<small>Level 1 Member</small>
 		<button class="btn btn-primary">

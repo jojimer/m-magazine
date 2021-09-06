@@ -1,4 +1,8 @@
-<div class="news-headline-block mm-news" style="background-image: url({{ $thumbnail }}); background-position: {{ $image_position }};">
+<div class="news-feed-block mm-news" style="background-image: url({{ $thumbnail }}); background-position: {{ $image_position }};">
+	<div class="news-feed-control">
+		<button class="btn save-bookmark-btn" title="Save">@far_icon('bookmark')</button>
+		<a href="{{ $url }}" class="btn btn-primary open-link-btn">Read More</a>	
+	</div>
 	<h2 class="news-title">{{ $data->post_title }}</h2>
 	<div class="news-info px-4">
 		<div class="news-excerpt">{{ $caption }}</div>

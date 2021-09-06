@@ -2,9 +2,9 @@
 	@php $news_posts = array_splice($data, 1, 3); @endphp
 	@foreach($news_posts as $news)
 		@php 
-			$thumbnail = Page::get_acf_single_field($news->ID,'url_image','thumbnail');
-			$image_position = Page::get_acf_single_field($news->ID,'image_position','thumbnail');
-	      	$views = Page::get_acf_single_field($news->ID,'views');
+			$thumbnail = App::get_acf_single_field($news->ID,'url_image','thumbnail');
+			$image_position = App::get_acf_single_field($news->ID,'image_position','thumbnail');
+	      	$views = App::get_acf_single_field($news->ID,'views');
 	    @endphp
 		<div class="col" style="background-image: url({{ $thumbnail }}); background-position: {{ $image_position }};">
 			<h5 class="news-title">{{ $news->post_title }}</h5>
