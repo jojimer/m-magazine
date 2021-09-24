@@ -1,44 +1,26 @@
 <div class="gallery-feed-block mm-gallery">
-	<p class="h2">Month of August</p>
+	<p class="h2">Month Of {{ $month[0]->name }} Preview</p>
 	<div class="gallery-preview-images">
 		<ol>
-			<li class="portrait">
-				<img src="@asset('images/girls5.png')" alt="image1">
-				<div class="view-image">
-					@fas_icon('search')
-				</div>
-			</li>
-			<li class="portrait">
-				<img src="@asset('images/girls3.png')" alt="image2">
-				<div class="view-image">
-					@fas_icon('search')
-				</div>
-			</li>
-			<li class="portrait">
-				<img src="@asset('images/girls2.png')" alt="image3">
-				<div class="view-image">
-					@fas_icon('search')
-				</div>
-			</li>
-			<li class="portrait">
-				<img src="@asset('images/girls1.png')" alt="image4">
-				<div class="view-image">
-					@fas_icon('search')
-				</div>
-			</li>
+			@foreach($images as $index => $image)
+				<li class="portrait" id="image-{{ $month[0]->name . "-" . $year[0]->name . "-" . $index }}">
+					<img src="{{ $image['gallery_image'] }}" alt="image1">
+					<div class="view-image">
+						@fas_icon('search')
+					</div>
+				</li>
+			@endforeach
 		</ol>
 	</div>
 	<div class="gallery-preview-control">
 		<ol>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li class="img-hidden"></li>
-			<li class="img-hidden"></li>
-			<li class="img-hidden"></li>
-			<li class="img-hidden"></li>
-			<li class="img-hidden"></li>
-			<li class="img-hidden"></li>
+			@php $all_images = count($images)-2; @endphp
+			@for ($i = 1; $i <= $preview_count; $i++)
+				@if($all_images >= $i)
+					@php $class = ($i <= 3) ? '' : 'class=img-hidden'; @endphp
+					<li {{ $class }}></li>
+				@endif
+			@endfor
 		</ol>
 	</div>
 </div>

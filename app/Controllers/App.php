@@ -49,6 +49,7 @@ class App extends Controller
         return $output;
     }
 
+// NEWS FUNCTIONS
     public function newsList()
     {
         $args = [
@@ -61,7 +62,7 @@ class App extends Controller
         return $query;
     }
 
-    public static function get_acf_single_field($id,$field,$group = '',$single = false)
+    public static function get_news_single_field($id,$field,$group = '',$single = false)
     {
         if(strlen($group) < 1) {
             $field_value = get_field($field,$id);
@@ -86,5 +87,32 @@ class App extends Controller
                 return $group_data[ $field ];
             }
         }       
+    }
+
+// GALLERY FUNCTIONS
+    public function galleries()
+    {
+        $args = [
+            'post_type' => 'gallery',
+            'post_per_page' => 4,
+            'order_by' => 'DESC'
+        ];
+
+        $query = get_posts($args);
+        return $query;
+    }
+
+    public static function get_gallery_single_field($id,$field,$reapeter = false)
+    {
+        if(!$reapeter) {
+            return get_field($field,$id);
+        }else{
+            $array_data = get_field($field,$id);
+            if ( is_array( $array_data ) ) {
+                return $array_data;
+            }else{
+                return NULL;
+            }
+        }
     }
 }

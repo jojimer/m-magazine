@@ -15,11 +15,44 @@ div.news-preview {
       margin-right: 8px;
     }
 
+    .news-feed-control {
+      position: absolute;
+      padding-right: 11px;
+      top: 0;
+      width: 100%;
+      text-align: right;
+      height: 83%;
+      z-index: 2;
+
+      .save-bookmark-btn {
+        color: #fff;
+        font-size: 1.8rem;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+      & > * {
+        visibility: hidden;
+        cursor: pointer;
+      }
+
+      &:hover {
+        background: linear-gradient(180deg, rgba(74, 88, 110, 0.6) 15%, rgba(74, 88, 110, 0.5) 20%, rgba(0, 0, 0, 0) 100%);
+
+        .save-bookmark-btn,
+        a {
+          visibility: visible;
+        }
+      }
+    }
+
     .news-title {
       font-family: Amethysta, sans-serif;
       display: inline-block;
       height: 80%;
-      padding: 1.5rem 4rem 0 1.5rem;
+      padding: 3.5rem 1.5rem 0 1.5rem;
     }
 
     div.news-meta {

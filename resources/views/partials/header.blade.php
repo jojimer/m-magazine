@@ -10,7 +10,7 @@
             <a href="/news" class="nav-link">News</a>
           </li>
           <li class="nav-item">
-            <a href="/gallery" class="nav-link">Gallery</a>
+            <a href="/galleries" class="nav-link">Gallery</a>
           </li>
           <li class="nav-item">
             <a href="/shop" class="nav-link">Shop</a>

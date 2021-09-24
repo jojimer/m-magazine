@@ -1,20 +1,21 @@
 div.gallery-feed-block {
-  @include component-box($light);
+  @include component-box($dark);
 
   width: 100%;
   height: 600px;
   overflow-y: hidden;
-  background-blend-mode: overlay;
+  background-blend-mode: multiply;
   margin-bottom: 8px !important;
   background-size: cover;
 
   p.h2 {
-    font-family: Amethysta, sans-serif;
-    color: $dark;
+    color: #fff;
     padding: 1rem 1.5rem;
     text-align: right;
     margin-bottom: 0;
-    font-weight: 600;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    text-transform: capitalize;
   }
 
   .gallery-preview-images {
@@ -57,12 +58,21 @@ div.gallery-feed-block {
           width: 100%;
           height: 100%;
           font-size: 3.5rem;
-          color: $iconcolor;
+          color: #fff;
         }
 
         &:hover .view-image {
           display: flex;
-          cursor: pointer;
+          cursor: grab;
+
+          svg:hover {
+            cursor: pointer;
+          }
+        }
+
+        &:active .view-image {
+          display: flex;
+          cursor: move;
         }
       }
     }
@@ -79,22 +89,22 @@ div.gallery-feed-block {
         margin: 0 0.35rem;
         cursor: pointer;
         position: relative;
-        opacity: 0.85;
+        opacity: 1;
 
         &:hover {
-          opacity: 1;
+          top: -3px;
         }
 
         &::after {
           content: "";
           padding: 0 0.4rem;
           border-radius: 50%;
-          border: 3px solid $dark;
+          border: 3px solid #fff;
           font-size: 10px;
         }
 
         &.img-hidden::after {
-          background-color: $dark;
+          background-color: #fff;
         }
       }
     }

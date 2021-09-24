@@ -7,7 +7,7 @@ export default {
     const mainpage = {
             'home' : 0,
             'news' : 1,
-            'gallery' : 2,
+            'galleries' : 2,
             'shop' : 3,
             'field-report' : 4,
           };
@@ -43,6 +43,7 @@ export default {
   });
 
   let initialPage = $('div#dynamic-container').data('barba-namespace');
+  initialPage = (initialPage == 'gallery') ? 'galleries' : initialPage;
   let next = nav[mainpage[initialPage]];
   let indexOfBeforeActive = mainpage[initialPage];
   let nextToActive = (indexOfBeforeActive > 0)? indexOfBeforeActive-1 : indexOfBeforeActive;
