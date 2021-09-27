@@ -1,4 +1,4 @@
-div.gallery-feed-block {
+div.gallery-preview-block {
   @include component-box($dark);
 
   width: 100%;
@@ -20,6 +20,7 @@ div.gallery-feed-block {
 
   .gallery-preview-images {
     padding: 0;
+    overflow-x: hidden;
 
     ol {
       display: flex;
@@ -27,8 +28,27 @@ div.gallery-feed-block {
       flex-direction: row;
       padding: 0;
       width: 100%;
-      overflow-x: hidden;
       height: 28.5rem;
+      -webkit-transition: 0.2s ease-in-out;
+      -moz-transition: 0.2s ease-in-out;
+      -o-transition: 0.2s ease-in-out;
+      -ms-transition: 0.2s ease-in-out;
+
+      li.preview-image-btn {
+        display: flex;
+        padding: 0 4rem;
+        background-color: $light;
+
+        button {
+          width: 165px;
+          margin: auto;
+          border-width: 2px;
+
+          svg {
+            font-size: 1.15rem;
+          }
+        }
+      }
 
       li {
         list-style-type: none;
@@ -45,6 +65,9 @@ div.gallery-feed-block {
 
         img {
           height: 100%;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
         }
 
         .view-image {
@@ -63,16 +86,10 @@ div.gallery-feed-block {
 
         &:hover .view-image {
           display: flex;
-          cursor: grab;
 
           svg:hover {
             cursor: pointer;
           }
-        }
-
-        &:active .view-image {
-          display: flex;
-          cursor: move;
         }
       }
     }
@@ -80,19 +97,19 @@ div.gallery-feed-block {
 
   .gallery-preview-control {
     ol {
-      margin: 1.6rem 1.5rem 0;
+      margin: 0.5rem 1.5rem 0;
       text-align: right;
 
       li {
         list-style-type: none;
         display: inline;
         margin: 0 0.35rem;
-        cursor: pointer;
         position: relative;
         opacity: 1;
 
-        &:hover {
+        &.img-hidden:hover {
           top: -3px;
+          cursor: pointer;
         }
 
         &::after {
