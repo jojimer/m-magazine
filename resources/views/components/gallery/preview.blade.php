@@ -5,14 +5,14 @@
 			@foreach($images as $index => $image)
 				@if($index < $preview_count)
 					<li class="portrait gallery-slide">
-						<img src="{{ $image['gallery_image'] }}" alt="image1">
+						<img src="{{ $image['gallery_image'] }}" alt="image{{$index}}">
 						<div class="view-image" id="image-{{ $month[0]->name . "-" . $year[0]->name . "-" . $index }}">
 							@fas_icon('search')
 						</div>
 					</li>
 				@endif
 			@endforeach
-			<li class="preview-image-btn"><button class="btn btn-outline-dark btn-lg">Show All @fas_icon('search')</button></li>
+			<li class="preview-image-btn"><a href="{{ $url }}" class="btn btn-outline-dark btn-lg">Show All @fas_icon('search')</a></li>
 		</ol>
 	</div>
 	<div class="gallery-preview-control">

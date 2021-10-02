@@ -37,6 +37,7 @@ export default {
             let classes = data.next.container.dataset.bodyClass;
             $('body').attr('class', classes);
             $('a.single-previous-url').attr('href',data.current.url.href);
+            $('div.single-close').removeClass('d-none');
           },
         },
       ],

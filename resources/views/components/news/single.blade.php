@@ -1,5 +1,5 @@
 <div class="news-single-wrap">
-	<div class="news-single-close"><a href="/" class="single-previous-url text-dark">@far_icon('times-circle')</a></div>
+	<div class="news-single-close single-close d-none"><a href="/" class="single-previous-url text-dark">@fas_icon('arrow-left')</a></div>
 	<div class="news-single-title">
 		<h1 class="news-title text-dark">{{ $data->post_title }}</h1>
 		<div class="news-single-bookmark-wrap">

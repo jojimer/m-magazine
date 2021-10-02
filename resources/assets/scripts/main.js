@@ -5,13 +5,13 @@ import 'jquery';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
 // import solid fontawesome
-import { faFireAlt, faExpandAlt, faHeart, faEye, faHashtag, faSearch, faBookmark as fasBookmark, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFireAlt, faExpandAlt, faHeart, faEye, faHashtag, faSearch, faBookmark as fasBookmark, faExternalLinkAlt, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 // import regular fontawesome
 import { faBell, faCommentAlt, faSquare, faCheckSquare, faComments, faBookmark as farBookmark, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 
 // add the imported icons to the library
-library.add(faBell, faExpandAlt, faCommentAlt, faFireAlt, faSquare, faCheckSquare, faComments, fasBookmark, faExternalLinkAlt, farBookmark, faHeart, faEye, faHashtag, faSearch, faTimesCircle);
+library.add(faBell, faExpandAlt, faCommentAlt, faFireAlt, faSquare, faCheckSquare, faComments, fasBookmark, faExternalLinkAlt, farBookmark, faHeart, faEye, faHashtag, faSearch, faTimesCircle, faArrowLeft);
 
 // tell FontAwesome to watch the DOM and add the SVGs when it detects icon markup
 dom.watch();
@@ -25,6 +25,7 @@ import common from './routes/common';
 import home from './routes/home';
 import aboutUs from './routes/about';
 import archiveGalleryData from './routes/galleries';
+import singleGallery from './custom/gallery/single';
 
 /** Populate Router instance with DOM routes */
 const routes = new Router({
@@ -36,6 +37,8 @@ const routes = new Router({
   aboutUs,
   // Galleries Page
   archiveGalleryData,
+  // Single Post Gallery 
+  singleGallery,
 });
 
 // Load Events

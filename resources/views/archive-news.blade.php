@@ -9,7 +9,7 @@
       "image_position" => App::get_news_single_field($news->ID,'image_position','thumbnail'),
       "caption" => App::get_news_single_field($news->ID,'excerpt'),
       "views" => App::get_news_single_field($news->ID,'views'),
-      "url" => get_permalink()
+      "url" => get_permalink($news->ID)
     ])
   @endforeach
 @endsection

@@ -114,3 +114,21 @@ add_action( 'admin_menu', 'remove_default_post_type' );
 function remove_default_post_type() {
     remove_menu_page( 'edit.php' );
 }
+
+// Hide Admin bar to subscriber
+add_action('set_current_user', 'cc_hide_admin_bar');
+function cc_hide_admin_bar() {
+  if (!current_user_can('edit_posts')) {
+    show_admin_bar(false);
+  }
+}
+
+// Don't run ajax when user is logged-in
+function ajax_check_user_is_admin() {
+    $user = wp_get_current_user();
+    echo ( in_array( 'subscriber', (array) $user->roles ) && is_user_logged_in() || !is_user_logged_in()) ? true : false;
+    die();
+}
+
+add_action('wp_ajax_is_user_admin', 'ajax_check_user_is_admin');
+add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
