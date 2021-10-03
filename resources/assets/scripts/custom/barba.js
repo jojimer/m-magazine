@@ -1,6 +1,8 @@
 // barba.js
 import barba from '@barba/core';
 import gsap from 'gsap';
+import galleryPreview from './gallery/preview';
+import singleGallery from './gallery/single';
 
 export default {
   init() {
@@ -35,9 +37,16 @@ export default {
           enter: function (data) {
             gsap.from(data.next.container, 1, {opacity: 0});
             let classes = data.next.container.dataset.bodyClass;
+            let nextNameSpace = data.next.namespace;
             $('body').attr('class', classes);
             $('a.single-previous-url').attr('href',data.current.url.href);
             $('div.single-close').removeClass('d-none');
+
+            //Load JS Custom Library
+            if(nextNameSpace === 'home' || nextNameSpace === 'gallery') {
+              galleryPreview.init();
+              singleGallery.init();
+            }
           },
         },
       ],

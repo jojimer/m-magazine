@@ -5,7 +5,7 @@
 			@foreach($images as $index => $image)
 				@if($index < $preview_count)
 					<li class="portrait gallery-slide">
-						<img src="{{ $image['gallery_image'] }}" alt="image{{$index}}">
+						<img src="{{ $image['gallery_image'] }}" alt="{{ $image['image_caption'] }}">
 						<div class="view-image" id="image-{{ $month[0]->name . "-" . $year[0]->name . "-" . $index }}">
 							@fas_icon('search')
 						</div>
