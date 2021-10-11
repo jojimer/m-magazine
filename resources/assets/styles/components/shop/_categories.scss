@@ -1,4 +1,4 @@
-.shop-gender-block {
+.shop-categories {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 8px;
@@ -12,16 +12,11 @@
     background-blend-mode: overlay;
     background-position: center;
 
-    &.sgb-left {
+    &.sgb {
       background-color: rgba(0, 0, 0, 0.15);
     }
 
-    &.sgb-right {
-      background-color: rgba(0, 0, 0, 0.15);
-    }
-
-    .cta-men,
-    .cta-women {
+    .cta-category {
       display: flex;
       flex-wrap: wrap;
       justify-content: right;
@@ -29,8 +24,7 @@
       align-content: space-between;
       height: 100%;
 
-      .cta-men-text,
-      .cta-women-text {
+      .cta-category-text {
         width: 100%;
 
         span {

@@ -10,11 +10,11 @@
           <div class="row g-2 mt-5" id="top-feed">
             <div class="col-3">
               <div class="blue-box-component">
-                @include('component::profile-box')
+                @include('component::sidebar.profile-box')
                   @divider('pt-3 pb-4')
-                @include('component::filter-box')
+                @include('component::sidebar.filter-box')
                   @divider('pt-2 pb-4')
-                @include('component::chatroom-box')
+                @include('component::sidebar.chatroom-box')
                   @divider('pt-2 pb-3')
               </div>
             </div>

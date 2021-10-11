@@ -115,4 +115,44 @@ class App extends Controller
             }
         }
     }
+
+// SHOP FUNCTIONS
+    public function shop_products()
+    {
+        $args = [
+            'post_type' => 'shop-product',
+            'post_per_page' => 4,
+            'order_by' => 'DESC'
+        ];
+
+        $query = get_posts($args);
+        return $query;
+    }
+
+    public static function get_shop_product_single_field($id)
+    {
+        $array = [];
+        $rows = get_field('shop_blocks',$id);
+
+        // Check rows exists.
+        if( count($rows) > 0 ){
+            foreach( $rows as $i => $row ) {
+                if ( is_array( $row ) && in_array( 'hero', $rows['choose_shop_blocks'] ) ) {
+                    $array['hero'] = $rows['hero'];
+                }
+
+                if ( is_array( $row  ) && in_array( 'categories', $rows['choose_shop_blocks'] ) ) {
+                    $array['categories'] = $rows['categories'];
+                }
+
+                if ( is_array( $row  ) && in_array( 'products', $rows['choose_shop_blocks'] ) ) {
+                    $array['products'] = $rows['products'];
+                }
+            }
+
+            return $array;
+        }else{
+            return NULL;
+        }
+    }
 }

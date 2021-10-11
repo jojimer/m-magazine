@@ -23,8 +23,12 @@
       "month" => get_object_term_cache( $galleries[0]->ID, 'month' ),
       "url" => get_permalink($galleries[0]->ID)
     ])
-    @include('component::shop.hero')
-    @include('component::shop.gender-block')
+    @php 
+      $products = App::get_shop_product_single_field($shop_products[0]->ID);
+    @endphp
+    @include('component::shop.hero',["hero" => $products['hero']])
+    @include('component::shop.categories',["categories" => $products['categories']])
+    @include('component::shop.products',["products" => $products['products']])
     @include('component::field-report.feed')        
   @endif
 @endsection
