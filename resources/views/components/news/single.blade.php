@@ -9,13 +9,9 @@
 	</div>
 	<div class="news-single-tags-date">
 		<p>
-			@php 
-	            $output = '';
-	            foreach($tags as $tag) {
-	                    $output .= '<small class="news-tags"><a href="'. esc_url( get_term_link( $tag )). '">#'.$tag->name.'</a></small>';
-	                }
-	            echo $output;
-			@endphp
+			@foreach($tags as $tag)
+	            <small class="news-tags"><a>#{{$tag->name}}</a></small>
+			@endforeach
 			<span>{{ date('F j, Y', strtotime($data->post_date)) }}</span>
 		</p>
 	</div>

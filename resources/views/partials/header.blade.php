@@ -16,7 +16,7 @@
             <a href="/shop" class="nav-link">Shop</a>
           </li>
           <li class="nav-item">
-            <a href="/field-report" class="nav-link">Field Report</a>
+            <a href="/field-reports" class="nav-link">Field Report</a>
           </li>
           <li class="nav-item">
             <div class="icons-wrap">

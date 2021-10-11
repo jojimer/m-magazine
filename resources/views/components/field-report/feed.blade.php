@@ -1,17 +1,23 @@
 <div class="field-report-block">
-	<div class="content-preview" style="background-image: url(@asset('images/zion-canyon1.jpg'));">
+	@php		
+		$excerpt = (strlen($data->post_excerpt) > 195) ? substr($data->post_excerpt, 0, 190) . '...' : $data->post_excerpt;
+		$author_name = get_the_author_meta( 'display_name', $data->post_author );
+		$author_avatar = get_avatar_url($data->post_author);
+		//var_dump($images);
+	@endphp
+	<div class="content-preview" style="background-image: url({{ $images[0]['image'] }});">
 		<div class="fr-main-info-wrap">
 			<div class="profile-picture">
-				<img src="@asset('images/pp.png')" alt="pp">
+				<img src="{{ $author_avatar }}" alt="pp">
 			</div>				
 			<div class="fr-info">
-				<p class="h2">Zion Canyon</p>
-				<p class="h5 font-weight-bold">Simon Crew</p>
+				<p class="h2">{{ $data->post_title }}</p>
+				<p class="h5 font-weight-bold">{{ $author_name }}</p>
 				<p class="font-weight-light">Author</p>
 			</div>
 			<div class="fr-date">
 				<p class="font-weight-light">
-					August 18, 2021
+					{{ date('F j, Y', strtotime($data->post_date)) }}
 				</p>
 			</div>
 		</div>
@@ -19,22 +25,29 @@
 	<div class="content-meta-info">
 		<div class="content-excerpt">
 			<p class="font-weight-bold">Excerpt</p>
-			<p class="text-left mb-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis incidunt, amet assumenda, rerum error quam! Eaque placeat ipsum assumenda est doloremque distinctio officia... <span class="fr-see-more">See More</span></p>
+			<p class="text-left mb-2">
+				{{ $excerpt }}
+			<span class="fr-see-more">See More</span>
+			</p>
 		</div>
 		<div class="content-tags">
 			<p class="font-weight-bold">Tags</p>
-			<p class="fr-tags"><span>#Travel</span> <span>#National Park</span></p>
+			<p class="fr-tags">
+				@foreach($tags as $tag)
+					<span>#{{$tag->name}}</span>
+				@endforeach
+			</p>
 		</div>
 		<div class="content-images-preview">
 			<p class="font-weight-bold">More Images</p>
 			<ul>
-				<li><img class="img-prev" src="@asset('images/zion-canyon1.jpg')" alt="zion-canyon"></li>
-				<li><img class="img-prev" src="@asset('images/zion-canyon2.jpg')" alt="zion-canyon"></li>
-				<li><img class="img-prev" src="@asset('images/zion-canyon3.jpg')" alt="zion-canyon"></li>
-				<li><img class="img-prev" src="@asset('images/zion-canyon4.jpg')" alt="zion-canyon"></li>
-				<li><img class="img-prev" src="@asset('images/zion-canyon5.jpg')" alt="zion-canyon"></li>
-				<li><img class="img-prev" src="@asset('images/zion-canyon6.jpg')" alt="zion-canyon"></li>
-				<li><img class="img-prev" src="@asset('images/zion-canyon7.jpg')" alt="zion-canyon"></li>
+				@foreach($images as $i => $image)
+					@if($i < 7)
+						<li>
+							<img class="img-prev" src="{{ $image['image'] }}" alt="{{ $data->post_title }} {{ $i }}">
+						</li>
+					@endif		
+				@endforeach
 				<li>View More</li>
 			</ul>
 		</div>

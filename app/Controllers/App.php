@@ -155,4 +155,22 @@ class App extends Controller
             return NULL;
         }
     }
+
+// FIELD REPORT FUNCTIONS
+    public function field_report()
+    {
+        $args = [
+            'post_type' => 'field-report',
+            'post_per_page' => 4,
+            'order_by' => 'DESC'
+        ];
+
+        $query = get_posts($args);
+        return $query;
+    }
+
+    public static function get_field_report_images($id)
+    {
+        return get_field('images',$id);
+    }
 }

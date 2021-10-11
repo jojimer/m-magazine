@@ -25,10 +25,15 @@
     ])
     @php 
       $products = App::get_shop_product_single_field($shop_products[0]->ID);
+      $field_report_images = App::get_field_report_images($field_report[0]->ID);
     @endphp
     @include('component::shop.hero',["hero" => $products['hero']])
     @include('component::shop.categories',["categories" => $products['categories']])
     @include('component::shop.products',["products" => $products['products']])
-    @include('component::field-report.feed')        
+    @include('component::field-report.feed',[
+      "data" => $field_report[0],
+      "images" => $field_report_images,
+      "tags" => get_object_term_cache( $field_report[0]->ID, 'tags' )
+    ])    
   @endif
 @endsection
