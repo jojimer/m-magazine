@@ -169,8 +169,8 @@ class App extends Controller
         return $query;
     }
 
-    public static function get_field_report_images($id)
+    public static function get_field_report_field($id,$field)
     {
-        return get_field('images',$id);
+        return get_field($field,$id);
     }
 }

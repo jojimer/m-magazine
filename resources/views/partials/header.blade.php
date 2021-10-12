@@ -1,7 +1,7 @@
 <header class="banner">
   <div class="container">
     <nav class="navbar justify-content-between p-0">
-        <a class="navbar-brand py-0 px-4" href="/">@fas_icon('fire-alt')</a>
+        <a class="navbar-brand py-0 px-4" href="/">@fas_icon('fire-alt') LOGO</a>
         <ul class="navbar-nav">
           <li class="nav-item">            
             <a href="/" class="nav-link">All</a>

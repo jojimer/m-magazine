@@ -34,7 +34,7 @@
 	</section>	
 </div>
 <div class="single-lightbox"></div>
-<div class="image-lightbox">  
+<div class="gallery-image-lightbox">  
   <div class="filter"></div>
   <div class="arrowr"></div>
   <div class="arrowl"></div>

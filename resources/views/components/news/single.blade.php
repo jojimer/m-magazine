@@ -10,7 +10,8 @@
 	<div class="news-single-tags-date">
 		<p>
 			@foreach($tags as $tag)
-	            <small class="news-tags"><a>#{{$tag->name}}</a></small>
+				@php $href = esc_url( get_term_link( $tag )); @endphp
+	            <small class="news-tags"><a href="{{ $href }}">#{{$tag->name}}</a></small>
 			@endforeach
 			<span>{{ date('F j, Y', strtotime($data->post_date)) }}</span>
 		</p>

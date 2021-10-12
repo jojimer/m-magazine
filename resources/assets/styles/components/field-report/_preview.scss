@@ -13,6 +13,14 @@
     padding: 3rem 2rem;
     background-color: rgba(0, 0, 0, 0.15);
     background-blend-mode: overlay;
+    position: relative;
+
+    .fr-view-counter {
+      position: absolute;
+      top: 0.75rem;
+      left: 1.5rem;
+      font-size: 1.25rem;
+    }
 
     .fr-main-info-wrap {
       display: flex;
@@ -79,8 +87,15 @@
       span {
         background-color: $dark;
         padding: 5px 10px;
-        color: #fff;
         margin-right: 5px;
+
+        a.fr-tag-link {
+          color: #fff;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
 
@@ -112,6 +127,10 @@
           }
         }
       }
+    }
+
+    a:hover {
+      text-decoration: none;
     }
   }
 }

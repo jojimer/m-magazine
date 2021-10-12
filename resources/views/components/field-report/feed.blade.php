@@ -1,14 +1,9 @@
 <div class="field-report-block">
-	@php		
-		$excerpt = (strlen($data->post_excerpt) > 195) ? substr($data->post_excerpt, 0, 190) . '...' : $data->post_excerpt;
-		$author_name = get_the_author_meta( 'display_name', $data->post_author );
-		$author_avatar = get_avatar_url($data->post_author);
-		//var_dump($images);
-	@endphp
 	<div class="content-preview" style="background-image: url({{ $images[0]['image'] }});">
+		<div class="fr-view-counter">@fas_icon('eye') {{ $views }}</div>
 		<div class="fr-main-info-wrap">
 			<div class="profile-picture">
-				<img src="{{ $author_avatar }}" alt="pp">
+				<img src="{{ $author_avatar }}" alt="{{ $author_name }}">
 			</div>				
 			<div class="fr-info">
 				<p class="h2">{{ $data->post_title }}</p>
@@ -27,14 +22,14 @@
 			<p class="font-weight-bold">Excerpt</p>
 			<p class="text-left mb-2">
 				{{ $excerpt }}
-			<span class="fr-see-more">See More</span>
-			</p>
+			<span class="fr-see-more"><a class="text-dark" href="{{ $url }}">See More @fas_icon('arrow-right')</a>
 		</div>
 		<div class="content-tags">
 			<p class="font-weight-bold">Tags</p>
 			<p class="fr-tags">
 				@foreach($tags as $tag)
-					<span>#{{$tag->name}}</span>
+					@php $href = esc_url( get_term_link( $tag )); @endphp
+					<span><a class="fr-tag-link" href="{{ $href }}">#{{$tag->name}}</a></span>
 				@endforeach
 			</p>
 		</div>
@@ -48,7 +43,7 @@
 						</li>
 					@endif		
 				@endforeach
-				<li>View More</li>
+				<li><a class="text-dark" href="{{ $url }}">View More</a></li>
 			</ul>
 		</div>
 	</div>

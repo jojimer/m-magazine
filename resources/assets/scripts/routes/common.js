@@ -1,6 +1,7 @@
 import barba from '../custom/barba';
 import galleryPreview from '../custom/gallery/preview';
 import singleGallery from '../custom/gallery/single';
+import singleFieldReport from '../custom/field-report/single';
 
 export default {
   contentInit() {
@@ -9,6 +10,9 @@ export default {
 
     // Load Single Gallery JS
     singleGallery.init()
+
+    // Load Single Field Report JS
+    singleFieldReport.init()
   },
   init() {
     // JavaScript to be fired on all pages

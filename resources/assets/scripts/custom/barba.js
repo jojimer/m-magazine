@@ -10,7 +10,7 @@ export default {
             'news' : 1,
             'galleries' : 2,
             'shop' : 3,
-            'field-report' : 4,
+            'field-reports' : 4,
           };
 
     let nav = $('.banner .navbar-nav li');
@@ -46,6 +46,7 @@ export default {
   let initialPage = $('div#dynamic-container').data('barba-namespace');
   initialPage = (initialPage == 'gallery') ? 'galleries' : initialPage;
   initialPage = (initialPage == 'shop-product') ? 'shop' : initialPage;
+  initialPage = (initialPage == 'field-report') ? 'field-reports' : initialPage;
   let next = nav[mainpage[initialPage]];
   let indexOfBeforeActive = mainpage[initialPage];
   let nextToActive = (indexOfBeforeActive > 0)? indexOfBeforeActive-1 : indexOfBeforeActive;

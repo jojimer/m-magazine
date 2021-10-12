@@ -25,7 +25,9 @@
     ])
     @php 
       $products = App::get_shop_product_single_field($shop_products[0]->ID);
-      $field_report_images = App::get_field_report_images($field_report[0]->ID);
+      $field_report_images = App::get_field_report_field($field_report[0]->ID,'images');
+      $fr_views = App::get_field_report_field($field_report[0]->ID,'views');
+      $fr_excerpt = (strlen($field_report[0]->post_excerpt) > 195) ? substr($field_report[0]->post_excerpt, 0, 190) . '...' : $field_report[0]->post_excerpt;
     @endphp
     @include('component::shop.hero',["hero" => $products['hero']])
     @include('component::shop.categories',["categories" => $products['categories']])
@@ -33,7 +35,12 @@
     @include('component::field-report.feed',[
       "data" => $field_report[0],
       "images" => $field_report_images,
-      "tags" => get_object_term_cache( $field_report[0]->ID, 'tags' )
+      "tags" => get_object_term_cache( $field_report[0]->ID, 'tags' ),
+      "views" => $fr_views,
+      "url" => get_permalink($field_report[0]->ID),
+      "author_avatar" => get_avatar_url($field_report[0]->post_author),
+      "author_name" => get_the_author_meta( 'display_name', $field_report[0]->post_author ),
+      "excerpt" => $fr_excerpt,
     ])    
   @endif
 @endsection

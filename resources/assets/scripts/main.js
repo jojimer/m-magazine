@@ -5,13 +5,13 @@ import 'jquery';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
 // import solid fontawesome
-import { faFireAlt, faExpandAlt, faHeart, faEye, faHashtag, faSearch, faBookmark as fasBookmark, faExternalLinkAlt, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faFireAlt, faExpandAlt, faHeart, faEye, faHashtag, faSearch, faBookmark as fasBookmark, faExternalLinkAlt, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 // import regular fontawesome
 import { faBell, faCommentAlt, faSquare, faCheckSquare, faComments, faBookmark as farBookmark, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 
 // add the imported icons to the library
-library.add(faBell, faExpandAlt, faCommentAlt, faFireAlt, faSquare, faCheckSquare, faComments, fasBookmark, faExternalLinkAlt, farBookmark, faHeart, faEye, faHashtag, faSearch, faTimesCircle, faArrowLeft);
+library.add(faBell, faExpandAlt, faCommentAlt, faFireAlt, faSquare, faCheckSquare, faComments, fasBookmark, faExternalLinkAlt, farBookmark, faHeart, faEye, faHashtag, faSearch, faTimesCircle, faArrowLeft, faArrowRight);
 
 // tell FontAwesome to watch the DOM and add the SVGs when it detects icon markup
 dom.watch();
