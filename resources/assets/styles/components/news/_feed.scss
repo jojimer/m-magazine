@@ -23,10 +23,6 @@ div.news-feed-block {
     padding-right: 0.75rem;
     opacity: 0;
 
-    &:hover {
-      opacity: 1;
-    }
-
     button,
     a {
       color: #fff;
@@ -100,4 +96,8 @@ div.news-feed-block {
 
   margin-bottom: 8px;
   background-size: cover;
+}
+
+div.news-feed-block:hover .news-feed-control {
+  opacity: 1;
 }

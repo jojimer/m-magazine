@@ -2,17 +2,19 @@ export default {
   // JavaScript to be fired on the galleries page 
   init() {
     // Get Images Value
+    let slideTimer;
     let getImages = function(trigger){
       let n = {
         'images' : trigger.parents('.gallery-preview-block').find('.gallery-preview-images>ol>li'),
         'translateWidth' : [],
       }
 
-      for(let i = 0; n.images.length > i; i++){         
+      for(let i = 0; n.images.length > i; i++){
         if(i !== 0){
-          n.translateWidth[i] = n.images[i].getBoundingClientRect().width + n.translateWidth[i-1];
+          n.translateWidth[i+1] = n.images[i].getBoundingClientRect().width + n.translateWidth[i];
         }else{
           n.translateWidth[i] = 0;
+          n.translateWidth[i+1] = n.images[i].getBoundingClientRect().width;
         }
       }
 
@@ -33,9 +35,13 @@ export default {
 
     // Slide images in gallery preview controller
     $(document).on('click','.gallery-preview-control>ol>li.img-hidden',function(){
-      // Get Images index
+      // Get Images index      
       let x = getImages($(this));
-      let ol = $(this).parents('.gallery-preview-block').find('.gallery-preview-images>ol') 
+      let ol = $(this).parents('.gallery-preview-block').find('.gallery-preview-images>ol');
+      if(slideTimer != undefined){
+        clearInterval(slideTimer);
+        ol.addClass('stop-sliding');
+      }
 
       // Translate images
       let controllerIndex = $(this).data('index');
@@ -53,8 +59,8 @@ export default {
         let allImages = x.images.length
         let t = 1;
              
-        let slideTimer = setInterval(function(){          
-          if(t < allImages - 2){  
+        slideTimer = setInterval(function(){          
+          if(t < allImages - 2 && !olWrap.hasClass('stop-sliding')){  
             olWrap.addClass('prev-sliding')
             moveControlButton(button,t,x.images)
             $(olWrap).css('transform','translateX(-'+x.translateWidth[t]+'px)');

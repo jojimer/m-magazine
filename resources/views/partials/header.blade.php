@@ -4,7 +4,7 @@
         <a class="navbar-brand py-0 px-4" href="/">@fas_icon('fire-alt') LOGO</a>
         <ul class="navbar-nav">
           <li class="nav-item">            
-            <a href="/" class="nav-link">All</a>
+            <a href="/" class="nav-link">Home</a>
           </li>
           <li class="nav-item">
             <a href="/news" class="nav-link">News</a>

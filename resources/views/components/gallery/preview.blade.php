@@ -7,12 +7,12 @@
 					<li class="portrait gallery-slide">
 						<img src="{{ $image['gallery_image'] }}" alt="{{ $image['image_caption'] }}">
 						<div class="view-image" id="image-{{ $month[0]->name . "-" . $year[0]->name . "-" . $index }}">
-							@fas_icon('search')
+							<a class="text-white" href="{{ $url }}">@fas_icon('search')</a>
 						</div>
 					</li>
 				@endif
 			@endforeach
-			<li class="preview-image-btn"><a href="{{ $url }}" class="btn btn-outline-dark btn-lg">Show All @fas_icon('search')</a></li>
+			<li class="preview-image-btn bg-light"><a href="{{ $url }}" class="btn btn-dark btn-lg">View All</a></li>
 		</ol>
 	</div>
 	<div class="gallery-preview-control">
