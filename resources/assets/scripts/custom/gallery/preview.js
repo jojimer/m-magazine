@@ -38,10 +38,7 @@ export default {
       // Get Images index      
       let x = getImages($(this));
       let ol = $(this).parents('.gallery-preview-block').find('.gallery-preview-images>ol');
-      if(slideTimer != undefined){
-        clearInterval(slideTimer);
-        ol.addClass('stop-sliding');
-      }
+      if(slideTimer != undefined) ol.addClass('stop-sliding');
 
       // Translate images
       let controllerIndex = $(this).data('index');

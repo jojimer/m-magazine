@@ -118,12 +118,12 @@ function remove_default_post_type() {
 // Hide Admin bar to subscriber
 add_action('set_current_user', 'cc_hide_admin_bar');
 function cc_hide_admin_bar() {
-  if (!current_user_can('edit_posts')) {
-    show_admin_bar(false);
-  }
+    if (!current_user_can('edit_posts')) {
+        show_admin_bar(false);
+    }
 }
 
-// Don't run ajax when user is logged-in
+// Don't run BarbaJS when admin user is logged-in
 function ajax_check_user_is_admin() {
     $user = wp_get_current_user();
     echo ( in_array( 'subscriber', (array) $user->roles ) && is_user_logged_in() || !is_user_logged_in()) ? true : false;
@@ -132,3 +132,34 @@ function ajax_check_user_is_admin() {
 
 add_action('wp_ajax_is_user_admin', 'ajax_check_user_is_admin');
 add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
+
+// Ajax load news content
+add_action('init', function(){
+    add_rewrite_tag('%offset%','([0-9]+)');
+    add_rewrite_rule('content-api/news/([0-9]+)/?', 'index.php?offset=$matches[1]', 'top');
+});
+
+add_action('template_redirect', function(){
+    global $wp_query;
+    $offset = $wp_query->get('offset');
+
+    if(!empty($offset)){
+        $args = [
+            'post_type' => 'news',
+            'posts_per_page' => 3,
+            'order_by' => 'DESC',
+            'offset' => $offset
+        ];
+
+        $posts = get_posts($args);
+
+        $output = '';
+        ob_start();
+        foreach($posts as $post) {
+            $output .= App::get_news_template($post);
+        }
+        ob_get_clean();
+
+        wp_send_json_success($output);
+    }
+});

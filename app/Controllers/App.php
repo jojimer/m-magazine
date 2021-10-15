@@ -49,12 +49,24 @@ class App extends Controller
         return $output;
     }
 
+    public static function setDatanumber($slug) {
+        switch ($slug) {
+            case 'news':
+                return 3;
+                break;
+            
+            default:
+                return 0;
+                break;
+        }
+    }
+
 // NEWS FUNCTIONS
     public function newsList()
     {
         $args = [
             'post_type' => 'news',
-            'post_per_page' => 4,
+            'posts_per_page' => 3,
             'order_by' => 'DESC'
         ];
 
@@ -89,12 +101,24 @@ class App extends Controller
         }       
     }
 
+    public static function get_news_template($news){
+        return \App\template('component::news.feed',
+        [
+          "data" => $news,
+          "thumbnail" => App::get_news_single_field($news->ID,'url_image','thumbnail'),
+          "image_position" => App::get_news_single_field($news->ID,'image_position','thumbnail'),
+          "caption" => App::get_news_single_field($news->ID,'excerpt'),
+          "views" => App::get_news_single_field($news->ID,'views'),
+          "url" => get_permalink($news->ID)
+        ]);
+    }
+
 // GALLERY FUNCTIONS
     public function galleries()
     {
         $args = [
             'post_type' => 'gallery',
-            'post_per_page' => 4,
+            'posts_per_page' => 4,
             'order_by' => 'DESC'
         ];
 
@@ -121,7 +145,7 @@ class App extends Controller
     {
         $args = [
             'post_type' => 'shop-product',
-            'post_per_page' => 4,
+            'posts_per_page' => 4,
             'order_by' => 'DESC'
         ];
 
@@ -161,7 +185,7 @@ class App extends Controller
     {
         $args = [
             'post_type' => 'field-report',
-            'post_per_page' => 4,
+            'posts_per_page' => 4,
             'order_by' => 'DESC'
         ];
 

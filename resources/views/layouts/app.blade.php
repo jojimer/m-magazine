@@ -18,7 +18,8 @@
                   @divider('pt-2 pb-3')
               </div>
             </div>
-            <div id="dynamic-container" class="col-9" data-barba="container" data-barba-namespace="{!! App::slug() !!}" data-body-class="{{ App::getClass() }}">
+            @php $slug = App::slug(); @endphp
+            <div id="dynamic-container" class="col-9" data-barba="container" data-barba-namespace="{!! $slug !!}" data-content-numbers="{!! App::setDatanumber($slug) !!}" data-body-class="{{ App::getClass() }}">
               @yield('content')
             </div>
           </div>
