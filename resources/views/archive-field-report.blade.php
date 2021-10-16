@@ -19,4 +19,5 @@
             "excerpt" => $excerpt,
         ])
     @endforeach
+    @include('component::loader')
 @endsection

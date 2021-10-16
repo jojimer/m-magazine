@@ -15,4 +15,5 @@
 	    	"url" => get_permalink($gallery->ID)
 	    ])
 	@endforeach
+	@include('component::loader')
 @endsection

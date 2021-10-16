@@ -5,12 +5,6 @@ import ajaxContentLoader from './ajax-content-loader';
 
 export default {
   init() {
-    // Set global variables
-    window.newsUpdate = {
-      'content' : 0,
-      'pageSkipped' : 3,
-    };
-
     // JavaScript to be fired on all pages
     const mainpage = {
             'home' : 0,
@@ -20,13 +14,30 @@ export default {
             'field-reports' : 4,
           };
 
-    // Get Updated Current Page Loaded
-    // const updateBeforeLeaving = function() {
-    //   return $('#dynamic-container').prop('outerHTML').replace(/"/g,'\\"');
-    // }
-
     // Get top navigation menu selector
-    let nav = $('.banner .navbar-nav li');    
+    let nav = $('.banner .navbar-nav li');
+
+    // Instanciate Ajax Content Loader
+    let contentLoader = ajaxContentLoader.init();
+
+    // Get Barba Dynamic Container
+    let dynamicContainer = $('#dynamic-container');
+
+    // Set global variables
+    window.contentUpdate = {
+      'content' : {
+        'news' : 0,
+        'galleries': 0,
+        'shop' : 0,
+        'field-reports' : 0,
+      },
+      'pageSkipped' : {
+        'news' : dynamicContainer.data('news-numbers'),
+        'galleries': dynamicContainer.data('galleries-numbers'),
+        'shop' : dynamicContainer.data('shop-numbers'),
+        'field-reports' : dynamicContainer.data('field-reports-numbers'),
+      },
+    };
 
     barba.init({
       transitions: [
@@ -44,8 +55,12 @@ export default {
 
               // Add scroll event to window if page is in the main menu
               if(mainpage[initialPage] && !$('body').hasClass('single')){
-                  ajaxContentLoader.init(initialPage);
+                  window.addEventListener('scroll', contentLoader, true);
               }
+          },
+          beforeLeave: function () {
+            // Remove Lightbox if open
+            $('html').css('overflow', 'auto');
           },
           leave: function (data) {
             // Run GSAP Animation
@@ -65,7 +80,9 @@ export default {
             // Remove current active and add new active and before active button to top menu button
             if(nextToActive > -1) $(nav[nextToActive]).addClass('second-to-active');
             $(prev).removeClass('active');
-            $(next).addClass('active');                       
+            $(next).addClass('active');
+
+            window.removeEventListener('scroll', contentLoader, true);
           },
           beforeEnter: function (data) {
             let classes = data.next.container.dataset.bodyClass;
@@ -75,23 +92,20 @@ export default {
             $('div.single-close').removeClass('d-none');
 
             //Add scroll event to window if page is in the main menu
-            if(mainpage[nextpage] && !$('body').hasClass('single') && !$('.main').hasClass(nextpage+'-event-active')){
-                ajaxContentLoader.init(nextpage);                
+            if(mainpage[nextpage] && !$('body').hasClass('single')){
+                window.addEventListener('scroll', contentLoader, true);   
             }
           },
           enter: function (data) {
             const namespace = data.next.namespace;
-            console.log(namespace);
-            switch(namespace) {
-              case 'news':
-                if(window.newsUpdate.content.length > 0) {
-                  setTimeout(function(){
-                    $('#dynamic-container').append(window.newsUpdate.content);
-                    $('#dynamic-container').attr('data-'+namespace+'-numbers',window.newsUpdate.pageSkipped);
-                    $('#loading-content').appendTo('#dynamic-container');
-                  },500)
-                }
-              break;
+            if(mainpage[namespace] !== 0 && !$('body').hasClass('single')){
+              if(window.contentUpdate.content[namespace].length > 0) {
+                setTimeout(function(){
+                  $('#dynamic-container').append(window.contentUpdate.content[namespace]);
+                  $('#dynamic-container').attr('data-'+namespace+'-numbers',window.contentUpdate.pageSkipped[namespace]);
+                  $('#loading-content').appendTo($('#dynamic-container[data-barba-namespace='+namespace+']'));
+                },500)
+              }
             }
             gsap.from(data.next.container, 1, {opacity: 0});        
           },

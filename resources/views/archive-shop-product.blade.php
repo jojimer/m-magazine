@@ -7,4 +7,5 @@
         @include('component::shop.categories',["categories" => $product['categories']])
         @include('component::shop.products',["products" => $product['products']])
     @endforeach
+    @include('component::loader')
 @endsection

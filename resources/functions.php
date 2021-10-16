@@ -133,27 +133,53 @@ function ajax_check_user_is_admin() {
 add_action('wp_ajax_is_user_admin', 'ajax_check_user_is_admin');
 add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
 
-// Ajax load news content
-add_action('init', function(){
+// Ajax load custom post content
+add_action('init', function(){    
     add_rewrite_tag('%offset%','([0-9]+)');
-    add_rewrite_rule('content-api/news/([0-9]+)/?', 'index.php?offset=$matches[1]', 'top');
+    add_rewrite_tag('%post_type%','([^&]+)');
+    add_rewrite_tag('%per_page%','([0-9]+)');
+    add_rewrite_rule('content-api/([^&]+)/([0-9]+)/([0-9]+)/?', 'index.php?post_type=$matches[1]&offset=$matches[2]&per_page=$matches[3]', 'top');
 });
 
 add_action('template_redirect', function(){
     global $wp_query;
     $offset = $wp_query->get('offset');
+    $per_page = $wp_query->get('per_page');
+    $post_type = $wp_query->get('post_type');
+    $output = '';
 
-    if(!empty($offset)){
+    if(!empty($offset) && !empty($post_type)){
+        // Search for post type key
+        $post_key = 'news';
+        switch($post_type) {
+            case 'news':
+                $post_key = 'news';
+            break;
+            case 'galleries':
+                $post_key = 'gallery';
+            break;
+            case 'shop':
+                $post_key = 'shop-product';
+            break;
+            case 'field-reports':
+                $post_key = 'field-report';
+            break;
+            default:
+                $post_key = 'news';
+            break;
+        }
+
+        // Create Args for get posts
         $args = [
-            'post_type' => 'news',
-            'posts_per_page' => 3,
+            'post_type' => $post_key,
+            'posts_per_page' => $per_page,
             'order_by' => 'DESC',
             'offset' => $offset
         ];
 
+        // Get custom posts
         $posts = get_posts($args);
-
-        $output = '';
+        
         ob_start();
         foreach($posts as $post) {
             $output .= App::get_news_template($post);

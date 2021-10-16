@@ -5,10 +5,11 @@ export default {
 			'offset': 3,
 		}
 	},
-	init(page) {
+	init() {
 		// Set function for scrolling at the bottom and load content
 		let loadContentAtTheBottom = () => {
-			if(!$('body').hasClass('single') && !$('.main').hasClass(page+'-ended') && page){
+			let page = this.staticData().container.data('barba-namespace');
+			if(!$('body').hasClass('single') && !$('main.main').hasClass(page+'-ended') && page){
 				let d = document.documentElement;
 				let offset = d.scrollTop + window.innerHeight;
 				let height = d.offsetHeight;
@@ -20,27 +21,25 @@ export default {
 			}else{
 				$('#loading-content').removeClass('d-none');
 				setTimeout(function(){
-					$('#loading-content').html('<p class="h3">No more '+page+' available!</p>').addClass('py-4').removeClass('d-none');
-				},2500)
+					$('#dynamic-container[data-barba-namespace='+page+'] #loading-content').html('<p class="h3">No more '+page+' content available!</p>').addClass('py-4').removeClass('d-none');
+				},1500)
 			}		
 		}
 
-		if(page && !$('.main').hasClass(page+'-event-active')){
-			window.addEventListener('scroll', loadContentAtTheBottom, true)
-		}
+		return loadContentAtTheBottom;
 	},	
 	getContent(page) {		
 		// galleryUpdate,fieldReportUpdate,homeUpdate;
 
-		let contentNumbers,
+		let contentLoaded,
 		data = this.staticData();
 
 		// News Content Loader Function
 		const loadNews = function () {
-			contentNumbers = data.container.data(page+'-numbers');
+			contentLoaded = data.container.data(page+'-numbers');
 			return new Promise((resolve, reject) => {
 			$.ajax({
-					url: '/content-api/news/'+contentNumbers,
+					url: '/content-api/'+page+'/'+contentLoaded+'/'+data.offset,
 					type: 'GET',
 					success: function (data) {
 						resolve(data)
@@ -58,20 +57,20 @@ export default {
 				let randomNumber = this.getRandomNumber();				
 				setTimeout(function(){
 					$('#loading-content').addClass('d-none');
-					data.container.data(page+'-numbers',contentNumbers + data.offset)
+					data.container.data(page+'-numbers',contentLoaded + data.offset)
 					data.container.append(result.data);
-					window.newsUpdate.pageSkipped = contentNumbers + data.offset;
+					window.contentUpdate.pageSkipped[page] = contentLoaded + data.offset;
 					$('#loading-content').appendTo(data.container);
-					if(window.newsUpdate.content !== 0){
-						window.newsUpdate.content += (page === 'news') ? result.data : '';
+					if(window.contentUpdate.content[page] !== 0){
+						window.contentUpdate.content[page] += result.data;
 					}else{
-						window.newsUpdate.content = result.data;
+						window.contentUpdate.content[page] = result.data;
 					}
 				},randomNumber)
 			}else{
 				$('main.main').addClass(page+'-ended');
 				setTimeout(function(){
-					$('#loading-content').html('<p class="h3">No more '+page+' available!</p>').addClass('py-4').removeClass('d-none');
+					$('#dynamic-container[data-barba-namespace='+page+'] #loading-content').html('<p class="h3">No more '+page+' content available!</p>').addClass('py-4').removeClass('d-none');
 				},2500)
 			}
 		}, err => {

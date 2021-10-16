@@ -20,7 +20,7 @@ export default {
 
 		$(document).on('click','.gallery-image-lightbox .close',function() {
 			$('.gallery-image-lightbox').fadeOut(300);
-			$('.title h1').remove();
+			$('.gallery-image-lightbox .title h1').remove();
 			$('.gallery-image-lightbox img').remove();
 			$('html').css('overflow', 'auto');
 		});

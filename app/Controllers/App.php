@@ -6,6 +6,8 @@ use Sober\Controller\Controller;
 
 class App extends Controller
 {
+    private static $_postPerPage = 3;
+
     public function siteName()
     {
         return get_bloginfo('name');
@@ -55,11 +57,11 @@ class App extends Controller
     public static function setDatanumber($slug) {
         switch ($slug) {
             case 'news':
-                return 3;
+                return self::$_postPerPage;
                 break;
             
             default:
-                return 0;
+                return 1;
                 break;
         }
     }
@@ -69,7 +71,7 @@ class App extends Controller
     {
         $args = [
             'post_type' => 'news',
-            'posts_per_page' => 3,
+            'posts_per_page' => self::$_postPerPage,
             'order_by' => 'DESC'
         ];
 
@@ -121,7 +123,7 @@ class App extends Controller
     {
         $args = [
             'post_type' => 'gallery',
-            'posts_per_page' => 4,
+            'posts_per_page' => self::$_postPerPage,
             'order_by' => 'DESC'
         ];
 
@@ -148,7 +150,7 @@ class App extends Controller
     {
         $args = [
             'post_type' => 'shop-product',
-            'posts_per_page' => 4,
+            'posts_per_page' => self::$_postPerPage,
             'order_by' => 'DESC'
         ];
 
@@ -188,7 +190,7 @@ class App extends Controller
     {
         $args = [
             'post_type' => 'field-report',
-            'posts_per_page' => 4,
+            'posts_per_page' => self::$_postPerPage,
             'order_by' => 'DESC'
         ];
 
