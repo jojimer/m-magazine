@@ -19,7 +19,7 @@
               </div>
             </div>
             @php $slug = App::slug(); @endphp
-            <div id="dynamic-container" class="col-9" data-barba="container" data-barba-namespace="{!! $slug !!}" data-content-numbers="{!! App::setDatanumber($slug) !!}" data-body-class="{{ App::getClass() }}">
+            <div id="dynamic-container" class="col-9" data-barba="container" data-barba-namespace="{!! $slug !!}" data-news-numbers="{!! App::setDatanumber($slug) !!}" data-body-class="{{ App::getClass() }}">
               @yield('content')
             </div>
           </div>

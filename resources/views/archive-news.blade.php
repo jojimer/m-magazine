@@ -12,4 +12,5 @@
       "url" => get_permalink($news->ID)
     ])
   @endforeach
+  @include('component::loader')
 @endsection

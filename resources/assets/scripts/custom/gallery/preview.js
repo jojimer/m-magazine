@@ -65,7 +65,7 @@ export default {
           }else{            
             clearInterval(slideTimer)            
           }
-        },2000)
+        },1500)
       }
     })    
   },

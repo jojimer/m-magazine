@@ -2,7 +2,6 @@ import barba from '../custom/barba';
 import galleryPreview from '../custom/gallery/preview';
 import singleGallery from '../custom/gallery/single';
 import singleFieldReport from '../custom/field-report/single';
-import ajaxContentLoader from '../custom/ajax-content-loader';
 
 export default {
   contentInit() {
@@ -14,9 +13,6 @@ export default {
 
     // Load Single Field Report JS
     singleFieldReport.init()
-
-    // Initiate Content Loader
-    ajaxContentLoader.init()
   },
   init() {
     // JavaScript to be fired on all pages

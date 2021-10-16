@@ -34,7 +34,10 @@ class App extends Controller
     public static function slug()
     {
         $pagename = get_query_var('pagename');
-        $pagename = (!$pagename) ? get_query_var('post_type') : $pagename;
+        if(!$pagename && is_archive()){
+            $post_type = get_queried_object();
+            $pagename = $post_type->rewrite['slug'];
+        }
         return (!$pagename) ? "home" : $pagename;
     }
 
