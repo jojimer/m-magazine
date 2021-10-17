@@ -14,7 +14,7 @@ export default {
 				let offset = d.scrollTop + window.innerHeight;
 				let height = d.offsetHeight;
 
-				if (offset >= height && $('#loading-content').hasClass('d-none')) {
+				if (offset >= height-100 && $('#loading-content').hasClass('d-none')) {
 					$('#loading-content').removeClass('d-none');
 					this.getContent(page);
 				}

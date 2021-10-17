@@ -61,7 +61,7 @@ class App extends Controller
                 break;
             
             default:
-                return 1;
+                return 2;
                 break;
         }
     }

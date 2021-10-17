@@ -57,6 +57,7 @@ div.news-feed-block {
     line-height: 1.25;
     font-family: Roboto, sans-serif;
     z-index: 1;
+    width: 100%;
 
     @include flex-content(space-between, center);
 

@@ -130,6 +130,17 @@ function ajax_check_user_is_admin() {
     die();
 }
 
+// Hide CPT Notice
+add_action('admin_head', 'hide_cpt_notice');
+
+function hide_cpt_notice() {
+  echo '<style>
+    .cpt-notice {
+      display: none;
+    } 
+  </style>';
+}
+
 add_action('wp_ajax_is_user_admin', 'ajax_check_user_is_admin');
 add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
 
