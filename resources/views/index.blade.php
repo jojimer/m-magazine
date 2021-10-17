@@ -29,13 +29,13 @@
       $fr_views = App::get_field_report_field($field_report[0]->ID,'views');
       $fr_excerpt = (strlen($field_report[0]->post_excerpt) > 195) ? substr($field_report[0]->post_excerpt, 0, 190) . '...' : $field_report[0]->post_excerpt;
     @endphp
-    @if(!empty($product['hero']))
+    @if(!empty($products['hero']))
       @include('component::shop.hero',["hero" => $products['hero']])
     @endif
-    @if(!empty($product['categories']))
+    @if(!empty($products['categories']))
       @include('component::shop.categories',["categories" => $products['categories']])
     @endif
-    @if(!empty($product['products']))
+    @if(!empty($products['products']))
       @include('component::shop.products',["products" => $products['products']])
     @endif
     @include('component::field-report.feed',[
