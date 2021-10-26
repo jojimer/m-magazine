@@ -3,6 +3,7 @@ export default {
 		return {
 			'container': $('#dynamic-container'),
 			'offset': 3,
+			'post_type' : {'news' : 'news', 'galleries' : 'gallery', 'shop' : 'shop-product', 'field-reports' : 'field-report' },
 		}
 	},
 	init() {
@@ -16,7 +17,7 @@ export default {
 
 				if (offset >= height-100 && $('#loading-content').hasClass('d-none')) {
 					$('#loading-content').removeClass('d-none');
-					this.getContent(page);
+					this.getContent(this.staticData().post_type[page],page);
 				}
 			}else{
 				$('#loading-content').removeClass('d-none');
@@ -28,7 +29,7 @@ export default {
 
 		return loadContentAtTheBottom;
 	},	
-	getContent(page) {		
+	getContent(post_type,page) {		
 		// galleryUpdate,fieldReportUpdate,homeUpdate;
 
 		let contentLoaded,
@@ -39,7 +40,7 @@ export default {
 			contentLoaded = data.container.data(page+'-numbers');
 			return new Promise((resolve, reject) => {
 			$.ajax({
-					url: '/content-api/'+page+'/'+contentLoaded+'/'+data.offset,
+					url: '/content-api/'+post_type+'/'+contentLoaded+'/'+data.offset,
 					type: 'GET',
 					success: function (data) {
 						resolve(data)

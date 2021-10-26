@@ -24,11 +24,11 @@
       "url" => get_permalink($galleries[0]->ID)
     ])
     @php 
+      // Product posts
       $products = App::get_shop_product_single_field($shop_products[0]->ID);
-      $field_report_images = App::get_field_report_field($field_report[0]->ID,'images');
-      $fr_views = App::get_field_report_field($field_report[0]->ID,'views');
-      $fr_excerpt = (strlen($field_report[0]->post_excerpt) > 195) ? substr($field_report[0]->post_excerpt, 0, 190) . '...' : $field_report[0]->post_excerpt;
     @endphp
+
+    {{-- Get Product Components --}}
     @if(!empty($products['hero']))
       @include('component::shop.hero',["hero" => $products['hero']])
     @endif
@@ -38,15 +38,41 @@
     @if(!empty($products['products']))
       @include('component::shop.products',["products" => $products['products']])
     @endif
-    @include('component::field-report.feed',[
-      "data" => $field_report[0],
-      "images" => $field_report_images,
-      "tags" => get_object_term_cache( $field_report[0]->ID, 'tags' ),
-      "views" => $fr_views,
-      "url" => get_permalink($field_report[0]->ID),
-      "author_avatar" => get_avatar_url($field_report[0]->post_author),
-      "author_name" => get_the_author_meta( 'display_name', $field_report[0]->post_author ),
-      "excerpt" => $fr_excerpt,
-    ])    
+
+    @php
+      // VIP Deals posts
+      $deal_ID = $vip_deals[0]->ID;
+      $vip_deal = App::get_vip_deal_field($deal_ID);
+    @endphp
+
+    {{-- Get VIP Deals Component --}}
+    @if(!empty($vip_deal))
+      @include('component::vip-deals.feed',[
+        "deal" => $vip_deal,
+        "tags" => get_object_term_cache( $deal_ID, 'tags' ),
+        "url" => get_permalink($deal_ID)
+      ])
+    @endif
+
+    @php
+      // Field Report posts
+      $field_report_images = App::get_field_report_field($field_report[0]->ID,'images');
+      $fr_views = App::get_field_report_field($field_report[0]->ID,'views');
+      $fr_excerpt = (strlen($field_report[0]->post_excerpt) > 195) ? substr($field_report[0]->post_excerpt, 0, 190) . '...' : $field_report[0]->post_excerpt;
+    @endphp
+
+    {{-- Get Field Report Components --}}
+    @if(!empty($field_report[0]))
+      @include('component::field-report.feed',[
+        "data" => $field_report[0],
+        "images" => $field_report_images,
+        "tags" => get_object_term_cache( $field_report[0]->ID, 'tags' ),
+        "views" => $fr_views,
+        "url" => get_permalink($field_report[0]->ID),
+        "author_avatar" => get_avatar_url($field_report[0]->post_author),
+        "author_name" => get_the_author_meta( 'display_name', $field_report[0]->post_author ),
+        "excerpt" => $fr_excerpt,
+      ])
+    @endif
   @endif
 @endsection

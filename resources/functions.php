@@ -160,29 +160,9 @@ add_action('template_redirect', function(){
     $output = '';
 
     if(!empty($offset) && !empty($post_type)){
-        // Search for post type key
-        $post_key = 'news';
-        switch($post_type) {
-            case 'news':
-                $post_key = 'news';
-            break;
-            case 'galleries':
-                $post_key = 'gallery';
-            break;
-            case 'shop':
-                $post_key = 'shop-product';
-            break;
-            case 'field-reports':
-                $post_key = 'field-report';
-            break;
-            default:
-                $post_key = 'news';
-            break;
-        }
-
         // Create Args for get posts
         $args = [
-            'post_type' => $post_key,
+            'post_type' => $post_type,
             'posts_per_page' => $per_page,
             'order_by' => 'DESC',
             'offset' => $offset
@@ -193,7 +173,20 @@ add_action('template_redirect', function(){
         
         ob_start();
         foreach($posts as $post) {
-            $output .= App::get_news_template($post);
+            switch($post_type) {
+                case 'news':
+                    $output .= App::get_news_template($post);
+                break;
+                case 'gallery':
+                    $output .= App::get_gallery_template($post);
+                break;
+                case 'shop-product':
+                    $output .= App::get_shop_template($post);
+                break;
+                case 'field-report':
+                    $output .= App::get_field_report_template($post);
+                break;
+            }            
         }
         ob_get_clean();
 

@@ -61,7 +61,7 @@ class App extends Controller
                 break;
             
             default:
-                return 2;
+                return 3;
                 break;
         }
     }
@@ -106,7 +106,8 @@ class App extends Controller
         }       
     }
 
-    public static function get_news_template($news){
+    public static function get_news_template($news)
+    {
         return \App\template('component::news.feed',
         [
           "data" => $news,
@@ -143,6 +144,25 @@ class App extends Controller
                 return NULL;
             }
         }
+    }
+
+    public static function get_gallery_template($gallery)
+    {
+        $output = \App\template('component::gallery.hero',[
+            "data" => $gallery,
+            "hero" => App::get_gallery_single_field($gallery->ID,"hero"),
+            "url" => get_permalink($gallery->ID)
+        ]);
+
+        $output .= \App\template('component::gallery.preview',[
+            "images" => App::get_gallery_single_field($gallery->ID,"gallery_content",true),
+            "preview_count" => App::get_gallery_single_field($gallery->ID,"preview_count"),
+            "year" => get_object_term_cache( $gallery->ID, 'year' ),
+            "month" => get_object_term_cache( $gallery->ID, 'month' ),
+            "url" => get_permalink($gallery->ID)
+        ]);
+
+        return $output;
     }
 
 // SHOP FUNCTIONS
@@ -185,6 +205,24 @@ class App extends Controller
         }
     }
 
+    public static function get_shop_template($products)
+    {
+
+        $product = App::get_shop_product_single_field($products->ID);
+        $output = "";
+        if(!empty($product['hero'])){
+            $output .= \App\template('component::shop.hero',["hero" => $product['hero']]);
+        }
+        if(!empty($product['categories'])){
+            $output .= \App\template('component::shop.categories',["categories" => $product['categories']]);
+        }
+        if(!empty($product['products'])){
+            $output .= \App\template('component::shop.products',["products" => $product['products']]);
+        }
+
+        return $output;
+    }
+
 // FIELD REPORT FUNCTIONS
     public function field_report()
     {
@@ -201,5 +239,42 @@ class App extends Controller
     public static function get_field_report_field($id,$field)
     {
         return get_field($field,$id);
+    }
+
+    public static function get_field_report_template($report)
+    {
+
+        $fr_images = App::get_field_report_field($report->ID,'images');        
+        $fr_views = App::get_field_report_field($report->ID,'views');
+        $excerpt = (strlen($report->post_excerpt) > 195) ? substr($report->post_excerpt, 0, 190) . '...' : $report->post_excerpt;
+
+        return \App\template('component::field-report.feed',[
+            "data" => $report,
+            "images" => $fr_images,
+            "views" => $fr_views,
+            "tags" => get_object_term_cache( $report->ID, 'tags' ),
+            "url" => get_permalink($report->ID),
+            "author_avatar" => get_avatar_url($report->post_author),
+            "author_name" => get_the_author_meta( 'display_name', $report->post_author ),
+            "excerpt" => $excerpt,
+        ]);
+    }
+
+// VIP DEALS FUNCTIONS
+    public function vip_deals()
+    {
+        $args = [
+            'post_type' => 'vip-deal',
+            'posts_per_page' => self::$_postPerPage,
+            'order_by' => 'DESC'
+        ];
+
+        $query = get_posts($args);
+        return $query;
+    }
+
+    public static function get_vip_deal_field($id)
+    {
+        return get_field('vip_deal',$id);
     }
 }

@@ -1,0 +1,61 @@
+.vip-deal-block {
+  @include component-box($light);
+
+  width: 100%;
+  height: 400px;
+  margin-bottom: 8px !important;
+  background-size: cover;
+  display: flex;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05);
+  background-blend-mode: overlay;
+
+  div:first-child {
+    align-self: end;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(90deg, rgba(74, 88, 110, 0.96) 70%, rgba(0, 0, 0, 0) 100%);
+
+    p.vip-deal-main-text {
+      font-family: Amethysta, sans-serif;
+      margin-bottom: 0;
+      line-height: 1;
+      margin-left: 95px;
+    }
+
+    p.vip-deal-sub-category {
+      margin-bottom: 0;
+      font-weight: 800;
+      font-family: Amethysta, sans-serif;
+      margin-left: 97px;
+    }
+  }
+
+  div.vip-icon {
+    margin: 1.9rem 1rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+
+    img {
+      width: 100%;
+      border: 4px #fff solid;
+      border-radius: 50%;
+    }
+  }
+
+  div.call-to-action {
+    margin: 1rem 1.25rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    span {
+      font-size: 1.25rem;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+}
