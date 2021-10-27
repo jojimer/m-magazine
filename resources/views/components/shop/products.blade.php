@@ -1,4 +1,4 @@
-<div class="products-block">
+<div class="products-block" data-post-id="{{$ID}}">
 	@foreach($products as $product)
 		<div class="product" style="background-image: url({{ $product['image'] }});">
 		 	<div class="cta-product">

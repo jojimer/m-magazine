@@ -1,4 +1,4 @@
-<div class="vip-deal-block" style="background-image: url({{ $deal['image'] }}); background-position: {{ $deal['image_position'] }};">
+<div class="vip-deal-block" data-post-id="{{$ID}}" style="background-image: url({{ $deal['image'] }}); background-position: {{ $deal['image_position'] }};">
 	<div>			
 		<p class="vip-deal-main-text h1">{{ $deal['title'] }}</p>
 		<p class="vip-deal-sub-category h4 font-weight-bold">{{ $deal['subtitle'] }}</p>

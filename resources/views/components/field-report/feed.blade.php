@@ -1,4 +1,4 @@
-<div class="field-report-block">
+<div class="field-report-block" data-post-id="{{$data->ID}}">
 	<div class="content-preview" style="background-image: url({{ $images[0]['image'] }});">
 		<div class="fr-view-counter">@fas_icon('eye') {{ $views }}</div>
 		<div class="fr-main-info-wrap">

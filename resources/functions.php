@@ -147,25 +147,54 @@ add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
 // Ajax load custom post content
 add_action('init', function(){    
     add_rewrite_tag('%offset%','([0-9]+)');
+    add_rewrite_tag('%per_page%','(\[[0-9,]+[0-9]*\])');
     add_rewrite_tag('%post_type%','([^&]+)');
-    add_rewrite_tag('%per_page%','([0-9]+)');
-    add_rewrite_rule('content-api/([^&]+)/([0-9]+)/([0-9]+)/?', 'index.php?post_type=$matches[1]&offset=$matches[2]&per_page=$matches[3]', 'top');
+
+    // Archive page ajax data link endpoint
+    add_rewrite_rule('content-api/([^&]+)/(\[[0-9,]+[0-9]*\])/([0-9]+)/?', 'index.php?post_type=$matches[1]&offset=$matches[2]&per_page=$matches[3]', 'top');
 });
 
 add_action('template_redirect', function(){
     global $wp_query;
     $offset = $wp_query->get('offset');
+    $arrayOffset = explode(",", trim($offset,"[]"));
     $per_page = $wp_query->get('per_page');
     $post_type = $wp_query->get('post_type');
-    $output = '';
+    $output = ['content' => '','exclude' => trim($offset,"[]")];
 
-    if(!empty($offset) && !empty($post_type)){
+    if(empty($post_type) && !empty($offset) && !empty($per_page)){        
+        $posts = App::getHomeContent($arrayOffset,$per_page);
+        ob_start();
+        foreach($posts as $post) {
+            switch($post->post_type) {
+                case 'news':
+                    $output['content'] .= App::get_news_template($post);
+                break;
+                case 'gallery':
+                    $output['content'] .= App::get_gallery_template($post);
+                break;
+                case 'shop-product':
+                    $output['content'] .= App::get_shop_template($post);
+                break;
+                case 'field-report':
+                    $output['content'] .= App::get_field_report_template($post);
+                break;
+                case 'vip-deal':
+                    $output['content'] .= App::get_vip_deal_template($post);
+                break;
+            }
+            $output['exclude'] .= ",".$post->ID;
+        }
+        ob_get_clean();
+
+        wp_send_json_success($output);
+    }elseif(!empty($offset) && !empty($post_type)){
         // Create Args for get posts
         $args = [
             'post_type' => $post_type,
             'posts_per_page' => $per_page,
-            'order_by' => 'DESC',
-            'offset' => $offset
+            'order' => 'DESC',
+            'post__not_in' => $arrayOffset
         ];
 
         // Get custom posts
@@ -175,18 +204,19 @@ add_action('template_redirect', function(){
         foreach($posts as $post) {
             switch($post_type) {
                 case 'news':
-                    $output .= App::get_news_template($post);
+                    $output['content'] .= App::get_news_template($post);
                 break;
                 case 'gallery':
-                    $output .= App::get_gallery_template($post);
+                    $output['content'] .= App::get_gallery_template($post);
                 break;
                 case 'shop-product':
-                    $output .= App::get_shop_template($post);
+                    $output['content'] .= App::get_shop_template($post);
                 break;
                 case 'field-report':
-                    $output .= App::get_field_report_template($post);
+                    $output['content'] .= App::get_field_report_template($post);
                 break;
-            }            
+            }
+            $output['exclude'] .= ",".$post->ID;
         }
         ob_get_clean();
 

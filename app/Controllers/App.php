@@ -54,16 +54,24 @@ class App extends Controller
         return $output;
     }
 
-    public static function setDatanumber($slug) {
-        switch ($slug) {
-            case 'news':
-                return self::$_postPerPage;
-                break;
-            
-            default:
-                return 3;
-                break;
-        }
+// HOME PAGE FUNCTIONS
+    public static function getHomeContent($offset,$per_page)
+    {
+        $args = [
+            'post_type' => ['news','gallery','shop-product','field-report','vip-deal'],
+            'posts_per_page' => $per_page,
+            'orderby' => 'rand',
+            'order' => 'DESC',
+            'post__not_in' => $offset
+        ];
+
+        $query = get_posts($args);
+        return $query;
+    }
+
+    public function randomContent()
+    {
+        return self::getHomeContent(0,8);
     }
 
 // NEWS FUNCTIONS
@@ -72,7 +80,7 @@ class App extends Controller
         $args = [
             'post_type' => 'news',
             'posts_per_page' => self::$_postPerPage,
-            'order_by' => 'DESC'
+            'order' => 'DESC'
         ];
 
         $query = get_posts($args);
@@ -125,7 +133,7 @@ class App extends Controller
         $args = [
             'post_type' => 'gallery',
             'posts_per_page' => self::$_postPerPage,
-            'order_by' => 'DESC'
+            'order' => 'DESC'
         ];
 
         $query = get_posts($args);
@@ -171,7 +179,7 @@ class App extends Controller
         $args = [
             'post_type' => 'shop-product',
             'posts_per_page' => self::$_postPerPage,
-            'order_by' => 'DESC'
+            'order' => 'DESC'
         ];
 
         $query = get_posts($args);
@@ -211,13 +219,13 @@ class App extends Controller
         $product = App::get_shop_product_single_field($products->ID);
         $output = "";
         if(!empty($product['hero'])){
-            $output .= \App\template('component::shop.hero',["hero" => $product['hero']]);
+            $output .= \App\template('component::shop.hero',["hero" => $product['hero'], "ID" => $products->ID]);
         }
         if(!empty($product['categories'])){
-            $output .= \App\template('component::shop.categories',["categories" => $product['categories']]);
+            $output .= \App\template('component::shop.categories',["categories" => $product['categories'], "ID" => $products->ID]);
         }
         if(!empty($product['products'])){
-            $output .= \App\template('component::shop.products',["products" => $product['products']]);
+            $output .= \App\template('component::shop.products',["products" => $product['products'], "ID" => $products->ID]);
         }
 
         return $output;
@@ -229,7 +237,7 @@ class App extends Controller
         $args = [
             'post_type' => 'field-report',
             'posts_per_page' => self::$_postPerPage,
-            'order_by' => 'DESC'
+            'order' => 'DESC'
         ];
 
         $query = get_posts($args);
@@ -266,7 +274,7 @@ class App extends Controller
         $args = [
             'post_type' => 'vip-deal',
             'posts_per_page' => self::$_postPerPage,
-            'order_by' => 'DESC'
+            'order' => 'DESC'
         ];
 
         $query = get_posts($args);
@@ -276,5 +284,15 @@ class App extends Controller
     public static function get_vip_deal_field($id)
     {
         return get_field('vip_deal',$id);
+    }
+    public static function get_vip_deal_template($deal)
+    {
+        $vip_deal = App::get_vip_deal_field($deal->ID);
+        return \App\template('component::vip-deals.feed',[
+        "deal" => $vip_deal,
+        "tags" => get_object_term_cache( $deal->ID, 'tags' ),
+        "url" => get_permalink($deal->ID),
+        "ID" => $deal->ID,
+      ]);
     }
 }

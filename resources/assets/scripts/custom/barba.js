@@ -20,22 +20,35 @@ export default {
     // Instanciate Ajax Content Loader
     let contentLoader = ajaxContentLoader.init();
 
-    // Get Barba Dynamic Container
-    let dynamicContainer = $('#dynamic-container');
+    // Find Excluded ID
+    const excludeID = function(namespace) {
+      let excluder = $('#dynamic-container[data-barba-namespace='+namespace+'] div[data-post-id]');
+      let excluding = '';
+      let exclude;
+      for(let i=0; i<excluder.length;i++){
+        exclude = $(excluder[i]).data('post-id');
+        if(exclude !== $(excluder[i-1]).data('post-id')){
+          excluding += (i === 0) ? exclude : ','+ exclude;
+        }        
+      }
+      window.contentUpdate.exclude[namespace] = excluding;
+    }
 
     // Set global variables
     window.contentUpdate = {
       'content' : {
+        'home' : 0,
         'news' : 0,
         'galleries': 0,
         'shop' : 0,
         'field-reports' : 0,
       },
-      'pageSkipped' : {
-        'news' : dynamicContainer.data('news-numbers'),
-        'galleries': dynamicContainer.data('galleries-numbers'),
-        'shop' : dynamicContainer.data('shop-numbers'),
-        'field-reports' : dynamicContainer.data('field-reports-numbers'),
+      'exclude' : {
+        'home' : 0,
+        'news' : 0,
+        'galleries': 0,
+        'shop' : 0,
+        'field-reports' : 0,
       },
     };
 
@@ -54,9 +67,11 @@ export default {
               $(next).addClass('active');
 
               // Add scroll event to window if page is in the main menu
-              if(mainpage[initialPage] && !$('body').hasClass('single')){
+              if(mainpage[initialPage] || $('body').hasClass('home') && !$('body').hasClass('single')){
                   window.addEventListener('scroll', contentLoader, true);
               }
+              excludeID(initialPage);
+              if($('body').hasClass('home')) window.contentUpdate.content[initialPage] = $('#dynamic-container').html();
           },
           beforeLeave: function () {
             // Remove Lightbox if open
@@ -92,22 +107,29 @@ export default {
             $('div.single-close').removeClass('d-none');
 
             //Add scroll event to window if page is in the main menu
-            if(mainpage[nextpage] && !$('body').hasClass('single')){
+            if(mainpage[nextpage] || $('body').hasClass('home') && !$('body').hasClass('single')){
                 window.addEventListener('scroll', contentLoader, true);   
             }
           },
           enter: function (data) {
             const namespace = data.next.namespace;
             if(mainpage[namespace] !== 0 && !$('body').hasClass('single')){
-              if(window.contentUpdate.content[namespace].length > 0) {
+              if(window.contentUpdate.content[namespace].length > 0) {                
                 setTimeout(function(){
                   $('#dynamic-container').append(window.contentUpdate.content[namespace]);
-                  $('#dynamic-container').attr('data-'+namespace+'-numbers',window.contentUpdate.pageSkipped[namespace]);
                   $('#loading-content').appendTo($('#dynamic-container[data-barba-namespace='+namespace+']'));
                 },500)
+              }else if(!$('main.main').hasClass(namespace+'-event-active') && !$('main.main').hasClass(namespace+'-ended')){
+                excludeID(namespace);
               }
+            }else if($('body').hasClass('home') && window.contentUpdate.content[namespace] !== 0){
+              $('#top-feed').addClass('hide-dynamic-container');
+              setTimeout(function(){
+                $('#dynamic-container').html(window.contentUpdate.content[namespace]);
+                $('#top-feed').removeClass('hide-dynamic-container');
+              },500)
             }
-            gsap.from(data.next.container, 1, {opacity: 0});        
+            gsap.from(data.next.container, 2, {opacity: 0});  
           },
         },
       ],
