@@ -162,7 +162,7 @@ add_action('template_redirect', function(){
     $post_type = $wp_query->get('post_type');
     $output = ['content' => '','exclude' => trim($offset,"[]")];
 
-    if(empty($post_type) && !empty($offset) && !empty($per_page)){        
+    if(empty($post_type) && !empty($offset) && !empty($per_page)){      
         $posts = App::getHomeContent($arrayOffset,$per_page);
         ob_start();
         foreach($posts as $post) {
