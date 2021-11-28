@@ -8,7 +8,7 @@
       <div class="content">
         <main class="main">
           <div class="row g-2 mt-5" id="top-feed">
-            <div class="col-3">
+            <div class="col-3 d-none">
               <div class="blue-box-component">
                 @include('component::sidebar.profile-box')
                   @divider('pt-3 pb-4')
@@ -19,7 +19,7 @@
               </div>
             </div>
             @php $slug = App::slug(); @endphp
-            <div id="dynamic-container" class="col-9" data-barba="container" data-barba-namespace="{!! $slug !!}" data-body-class="{{ App::getClass() }}">
+            <div id="dynamic-container" class="col" data-barba="container" data-barba-namespace="{!! $slug !!}" data-body-class="{{ App::getClass() }}">
               @yield('content')
             </div>
           </div>

@@ -36,7 +36,7 @@ class App extends Controller
     public static function slug()
     {
         $pagename = get_query_var('pagename');
-        if(!$pagename && is_archive()){
+        if(!$pagename && is_archive() && !is_tax()){
             $post_type = get_queried_object();
             $pagename = $post_type->rewrite['slug'];
         }
@@ -55,14 +55,15 @@ class App extends Controller
     }
 
 // HOME PAGE FUNCTIONS
-    public static function getHomeContent($offset,$per_page)
+    public static function getHomeContent($offset,$per_page,$orderby,$term)
     {
         $args = [
             'post_type' => ['news','gallery','shop-product','field-report','vip-deal'],
             'posts_per_page' => $per_page,
-            'orderby' => 'rand',
+            'orderby' => $orderby,
             'order' => 'DESC',
-            'post__not_in' => $offset
+            'post__not_in' => $offset,
+            'tax_query' => $term
         ];
 
         $query = get_posts($args);
@@ -70,8 +71,23 @@ class App extends Controller
     }
 
     public function randomContent()
-    {
-        return self::getHomeContent(0,8);
+    {   
+        $term = "";
+        $orderby = 'rand';
+
+        if(is_tax()){
+          $term =  array(
+                array(
+                    'taxonomy' => get_query_var('taxonomy'),
+                    'field'    => 'slug',
+                    'terms'    => get_query_var('term'),
+                ),
+            );
+
+          $orderby = '';
+        }
+
+        return self::getHomeContent(0,8,$orderby,$term);
     }
 
 // NEWS FUNCTIONS
