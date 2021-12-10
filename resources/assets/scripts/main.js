@@ -5,13 +5,13 @@ import 'jquery';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 
 // import solid fontawesome
-import { faFireAlt, faExpandAlt, faHeart, faEye, faHashtag, faSearch, faBookmark as fasBookmark, faExternalLinkAlt, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faFireAlt, faCircleNotch, faExpandAlt, faHeart, faUserPlus, faAt, faKey, faSignInAlt, faSignOutAlt, faEye, faHashtag, faSearch, faBookmark as fasBookmark, faExternalLinkAlt, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 // import regular fontawesome
-import { faBell, faCommentAlt, faSquare, faCheckSquare, faComments, faBookmark as farBookmark, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
+import { faBell, faCommentAlt, faSquare, faUser, faCheckSquare, faComments, faBookmark as farBookmark, faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 
 // add the imported icons to the library
-library.add(faBell, faExpandAlt, faCommentAlt, faFireAlt, faSquare, faCheckSquare, faComments, fasBookmark, faExternalLinkAlt, farBookmark, faHeart, faEye, faHashtag, faSearch, faTimesCircle, faArrowLeft, faArrowRight);
+library.add(faBell, faCircleNotch, faUserPlus, faKey, faAt, faExpandAlt, faCommentAlt, faSignInAlt, faSignOutAlt, faUser, faFireAlt, faSquare, faCheckSquare, faComments, fasBookmark, faExternalLinkAlt, farBookmark, faHeart, faEye, faHashtag, faSearch, faTimesCircle, faArrowLeft, faArrowRight);
 
 // tell FontAwesome to watch the DOM and add the SVGs when it detects icon markup
 dom.watch();

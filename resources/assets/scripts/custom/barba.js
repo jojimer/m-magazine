@@ -12,6 +12,7 @@ export default {
             'galleries' : 2,
             'shop' : 3,
             'field-reports' : 4,
+            'my-account' : 5,
           };
 
     // Get top navigation menu selector
@@ -58,19 +59,21 @@ export default {
           name: 'basic',
           once: function (data){
               let initialPage = data.next.namespace;
-              let next = nav[mainpage[initialPage]];
-              let indexOfBeforeActive = mainpage[initialPage];
+              if(mainpage[initialPage] > 5){
+                let next = nav[mainpage[initialPage]];
+                let indexOfBeforeActive = mainpage[initialPage];
 
-              // Add new active and before active button to top menu button
-              let nextToActive = (indexOfBeforeActive > 0)? indexOfBeforeActive-1 : indexOfBeforeActive;
-              if(nextToActive > -1) $(nav[nextToActive]).addClass('second-to-active');
-              $(next).addClass('active');
+                // Add new active and before active button to top menu button
+                let nextToActive = (indexOfBeforeActive > 0)? indexOfBeforeActive-1 : indexOfBeforeActive;
+                if(nextToActive > -1) $(nav[nextToActive]).addClass('second-to-active');
+                $(next).addClass('active');
 
-              // Add scroll event to window if page is in the main menu
-              if(mainpage[initialPage] || $('body').hasClass('home') && !$('body').hasClass('single')){
-                  window.addEventListener('scroll', contentLoader, true);
+                // Add scroll event to window if page is in the main menu
+                if(mainpage[initialPage] || $('body').hasClass('home') && !$('body').hasClass('single')){
+                    window.addEventListener('scroll', contentLoader, true);
+                }
+                excludeID(initialPage);
               }
-              excludeID(initialPage);
               if($('body').hasClass('home')) window.contentUpdate.content[initialPage] = $('#dynamic-container').html();
           },
           beforeLeave: function () {
@@ -81,6 +84,7 @@ export default {
             // Run GSAP Animation
             gsap.to(data.current.container, 1, {opacity: 0});
 
+            
             // Find and set new active and before active top navigation menu
             const namespace = data.current.namespace;
             const nextpage = (data.next.url.path !== '/') ? data.next.url.path.replace('/','') : 'home';
@@ -88,6 +92,7 @@ export default {
             let next = nav[mainpage[nextpage]];
             let nextToActive = (mainpage[nextpage] > 0)? mainpage[nextpage]-1 : mainpage[nextpage];
             
+
             // Remove Current Page Class to html body tag
             $('body').removeClass(data.current.container);
             $(nav).removeClass('second-to-active active');
@@ -95,7 +100,7 @@ export default {
             // Remove current active and add new active and before active button to top menu button
             if(nextToActive > -1) $(nav[nextToActive]).addClass('second-to-active');
             $(prev).removeClass('active');
-            $(next).addClass('active');
+            if(mainpage[nextpage] < 5) $(next).addClass('active');
 
             window.removeEventListener('scroll', contentLoader, true);
           },
@@ -113,7 +118,7 @@ export default {
           },
           enter: function (data) {
             const namespace = data.next.namespace;
-            if(mainpage[namespace] !== 0 && !$('body').hasClass('single')){
+            if(mainpage[namespace] !== 0 && mainpage[namespace] !== 5 && !$('body').hasClass('single')){
               if(window.contentUpdate.content[namespace].length > 0) {                
                 setTimeout(function(){
                   $('#dynamic-container').append(window.contentUpdate.content[namespace]);

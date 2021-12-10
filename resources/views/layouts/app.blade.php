@@ -4,6 +4,7 @@
   <body @php body_class() @endphp data-barba="wrapper">
     @php do_action('get_header') @endphp
     @include('partials.header')
+    @php do_shortcode('[xoo_el_inline_form]',false) @endphp
     <div class="wrap container" role="document">
       <div class="content">
         <main class="main">

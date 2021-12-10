@@ -141,6 +141,14 @@ function hide_cpt_notice() {
   </style>';
 }
 
+// Exclude Page
+function tg_exclude_pages_from_search_results( $query ) {
+    if ( $query->is_main_query() && $query->is_search() && ! is_admin() ) {
+        $query->set( 'post_type', array( 'news','vip-deal','field-report','gallery' ) );
+    }    
+}
+add_action( 'pre_get_posts', 'tg_exclude_pages_from_search_results' );
+
 add_action('wp_ajax_is_user_admin', 'ajax_check_user_is_admin');
 add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
 

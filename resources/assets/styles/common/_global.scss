@@ -18,6 +18,10 @@ body {
   }
 }
 
+body.logged-in {
+  margin-top: -32px;
+}
+
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -123,4 +127,64 @@ body {
   text-align: right;
   text-transform: capitalize;
   font-size: 3.5rem;
+}
+
+.search-result,
+.page-not-found {
+  background-color: #fff;
+  padding: 3rem 4rem;
+  margin-top: 2rem;
+  color: $dark;
+  min-height: 83vh;
+
+  article {
+    margin: 2rem 0 3rem;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 12rem;
+  }
+}
+
+.four-zero-four {
+  font-size: 20rem;
+  text-align: center;
+  margin-top: 6rem;
+  font-family: Roboto, sans-serif;
+}
+
+div.nav-account {
+  position: absolute;
+  background: #fdfdfd;
+  color: $dark;
+  right: -0.25rem;
+  bottom: -50px;
+  padding: 0.75rem;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border: 2px solid #4a586e0a;
+
+  span {
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+
+    &:first-child {
+      border-right: 1px solid $dark;
+      padding-right: 1.75rem;
+    }
+
+    &:last-child {
+      padding-left: 1.5rem;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+#wpadminbar {
+  display: none;
 }

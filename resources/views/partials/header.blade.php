@@ -20,12 +20,25 @@
           </li>
           <li class="nav-item">
             <div class="icons-wrap">
-              <span class="icon-holder">
+              {{-- <span class="icon-holder">
                 @far_icon('comment-alt')
               </span>
               <span class="icon-holder">
                 @far_icon('bell')
+              </span> --}}
+              {{ get_search_form(['echo']) }}
+              <span class="icon-holder mx-3 account-icon">
+                @far_icon('user')
               </span>
+            </div>
+            <div class="nav-account d-none">
+              @if(!is_user_logged_in())
+                <span class="xoo-el-login-tgr">Login</span>
+                <span class="xoo-el-reg-tgr">Sign Up</span>
+              @else
+                <span><a href="/my-account" class="text-dark">My Account</a></span>
+                <span id="logout-trigger"><a class="text-dark" href="#">Logout</a></span>
+              @endif
             </div>
           </li>
         </ul>
