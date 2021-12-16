@@ -18,10 +18,6 @@ body {
   }
 }
 
-body.logged-in {
-  margin-top: -32px;
-}
-
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
@@ -166,7 +162,7 @@ div.nav-account {
   font-size: 0.85rem;
   border: 2px solid #4a586e0a;
 
-  span {
+  & > span {
     padding: 0.35rem 0.75rem;
     cursor: pointer;
 
@@ -183,8 +179,47 @@ div.nav-account {
       text-decoration: none;
     }
   }
+
+  & > div.logged-in-user {
+    display: flex;
+    text-align: right;
+    margin: -0.85rem;
+    flex-direction: column;
+    margin-bottom: -80px;
+
+    span {
+      background: #fdfdfd;
+
+      &:first-child {
+        padding: 0.25rem 0.75rem;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 0.25rem 0.75rem;
+      color: $dark;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $dark;
+        color: white !important;
+      }
+    }
+  }
 }
 
-#wpadminbar {
-  display: none;
+body.profile.page a.profile,
+body.account.page a.manage-account {
+  pointer-events: none;
+  background-color: $dark;
+  color: white !important;
+}
+
+div.tooltip.fade.show.bs-tooltip-bottom {
+  display: none !important;
+}
+
+div.tooltip[role=tooltip] {
+  font-weight: 500 !important;
 }

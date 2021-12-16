@@ -12,7 +12,7 @@ export default {
             'galleries' : 2,
             'shop' : 3,
             'field-reports' : 4,
-            'my-account' : 5,
+            'page' : 5,
           };
 
     // Get top navigation menu selector
@@ -59,7 +59,7 @@ export default {
           name: 'basic',
           once: function (data){
               let initialPage = data.next.namespace;
-              if(mainpage[initialPage] > 5){
+              if(mainpage[initialPage] < 5){
                 let next = nav[mainpage[initialPage]];
                 let indexOfBeforeActive = mainpage[initialPage];
 
@@ -118,7 +118,7 @@ export default {
           },
           enter: function (data) {
             const namespace = data.next.namespace;
-            if(mainpage[namespace] !== 0 && mainpage[namespace] !== 5 && !$('body').hasClass('single')){
+            if(mainpage[namespace] !== 0 && mainpage[namespace] < 5 && !$('body').hasClass('single')){
               if(window.contentUpdate.content[namespace].length > 0) {                
                 setTimeout(function(){
                   $('#dynamic-container').append(window.contentUpdate.content[namespace]);

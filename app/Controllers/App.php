@@ -39,6 +39,8 @@ class App extends Controller
         if(!$pagename && is_archive() && !is_tax()){
             $post_type = get_queried_object();
             $pagename = $post_type->rewrite['slug'];
+        }elseif(!is_front_page() && is_page()){
+            $pagename = 'page';
         }
         return (!$pagename) ? "home" : $pagename;
     }

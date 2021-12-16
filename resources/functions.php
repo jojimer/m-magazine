@@ -231,3 +231,28 @@ add_action('template_redirect', function(){
         wp_send_json_success($output);
     }
 });
+
+add_action('check_admin_referer', 'logout_without_confirm', 10, 2);
+function logout_without_confirm($action, $result)
+{
+    /**
+     * Allow logout without confirmation
+     */
+    if ($action == "logout" && !isset($_GET['_wpnonce'])) {
+        $redirect_to = isset($_REQUEST['redirect_to']) ? $_REQUEST['redirect_to'] : 'news';
+        $location = str_replace('&amp;', '&', wp_logout_url($redirect_to));
+        header("Location: $location");
+        die;
+    }
+}
+
+function my_logged_in_redirect() {
+     
+    if ( !is_user_logged_in() && is_page( 511 ) ) 
+    {
+        wp_redirect( home_url() );
+        die;
+    }
+     
+}
+add_action( 'template_redirect', 'my_logged_in_redirect', 10, 3 );

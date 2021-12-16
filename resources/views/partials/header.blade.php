@@ -27,17 +27,35 @@
                 @far_icon('bell')
               </span> --}}
               {{ get_search_form(['echo']) }}
-              <span class="icon-holder mx-3 account-icon">
-                @far_icon('user')
-              </span>
+              @if(!is_user_logged_in())
+                <span class="icon-holder mx-3 account-icon">
+                  @far_icon('user')
+                </span>
+              @else
+                <span class="avatar-holder mx-3 account-icon">
+                  @php
+                   $userID = get_current_user_id();
+                   $avatar = uwp_get_usermeta( $userID, 'avatar_thumb', '' );
+                   if(!empty($avatar)){
+                    echo '<img id="profile_avatar" src="/app/uploads/'.$avatar.'">';
+                   }else{
+                    echo '<img id="profile_avatar" src="'. esc_url( get_avatar_url($userID) ) .'" />';
+                   }
+                  @endphp
+                </span>
+              @endif
             </div>
             <div class="nav-account d-none">
               @if(!is_user_logged_in())
                 <span class="xoo-el-login-tgr">Login</span>
                 <span class="xoo-el-reg-tgr">Sign Up</span>
               @else
-                <span><a href="/my-account" class="text-dark">My Account</a></span>
-                <span id="logout-trigger"><a class="text-dark" href="#">Logout</a></span>
+                <div class="logged-in-user">
+                  <span>Hello, {{ get_user_meta( $userID, 'first_name', true ) }}</span>
+                  <span><a class="manage-account" href="/account" class="text-dark">Manage Account</a></span>
+                  <span><a class="profile" href="/profile" class="text-dark">Profile</a></span>
+                  <span><a class="text-dark" href="{{ str_replace('&amp;', '&', wp_logout_url('news')) }}">Logout</a></span>
+                </div>
               @endif
             </div>
           </li>

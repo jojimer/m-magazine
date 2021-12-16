@@ -1,0 +1,115 @@
+// Global
+body.uwp_page {
+  div.modal-dialog {
+    margin-top: 8rem;
+  }
+
+  #uwp-profile-modal-title {
+    color: $dark;
+  }
+}
+
+// Account Page
+body.uwp_account_page.account {
+  div.uwp_widgets.uwp_widget_account {
+    background-color: white;
+    padding: 3rem 2.5rem 3rem 0;
+    border-radius: 10px;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: $dark;
+    opacity: 0.5;
+
+    &:hover {
+      color: $dark;
+      opacity: 1;
+    }
+
+    &.active {
+      color: $dark;
+      opacity: 1;
+    }
+
+    &.uwp-account-logout {
+      display: none;
+    }
+  }
+
+  div.navbar-light div.pt-5 {
+    padding-bottom: 3rem;
+    background-color: white !important;
+  }
+
+  div.col-lg-9 {
+    & > div.h-100 {
+      padding: 0 !important;
+    }
+
+    h3 {
+      color: $dark;
+    }
+  }
+
+  div.tooltip[role="tooltip"] {
+    display: none !important;
+  }
+
+  form.uwp-account-form.uwp_form {
+    color: $dark;
+  }
+
+  div.uwp-profile-extra-wrap.form-group.row {
+    align-self: center;
+  }
+
+  div#uwp_hide_from_listing {
+    text-align: right;
+    padding-bottom: 0.5rem;
+  }
+}
+
+// Profile Page
+body.uwp_profile_page.profile {
+  .uwp-profile-name a.btn {
+    border-radius: 100%;
+    border-width: 2px;
+    font-size: 0.65rem;
+    padding: 0.4rem;
+  }
+
+  .uwp-profile-header div.card-body div.col.text-center.tofront {
+    margin-top: -5rem;
+  }
+
+  #uwp-profile-tabs-nav ul.navbar-nav li.active {
+    border-width: 5px !important;
+  }
+
+  .uwp-profile-tabs {
+    background-color: white;
+
+    #tab-content {
+      padding: 0 1rem 1.5rem;
+      color: #4a586e;
+    }
+  }
+
+  div.uwp-profile-header {
+    div.card {
+      border-radius: 10px 10px 0 0;
+
+      img.uwp-banner-image {
+        border-radius: 10px 10px 0 0;
+      }
+
+      img.rounded-circle.shadow {
+        border: 3px solid white !important;
+      }
+    }
+  }
+
+  div.uwp-profile-tabs {
+    border-radius: 0 0 10px 10px;
+  }
+}
