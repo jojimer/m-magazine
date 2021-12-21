@@ -57,7 +57,7 @@ class App extends Controller
     }
 
 // HOME PAGE FUNCTIONS
-    public static function getHomeContent($offset,$per_page,$orderby,$term)
+    private static function getHomeContent($offset,$per_page,$orderby,$term)
     {
         $args = [
             'post_type' => ['news','gallery','shop-product','field-report','vip-deal'],
@@ -262,15 +262,69 @@ class App extends Controller
         return $query;
     }
 
+    public static function field_report_by_author($reports)
+    {
+        $countReports = count($reports);
+
+        // Get All Reports
+        $html = '<div class="profile-field-report-content">';
+        foreach($reports as $key => $report){
+            $display = ($key >= 4) ? 'd-none' : '';
+            $html .= App::get_field_report_template($report,$display);
+        }
+        $html .= '</div>'; 
+
+        $html .= '<div class="field-reports-loading d-none"><i class="fas fa-circle-notch"></i></div>';
+
+        // Get Pagination
+        if($countReports > 4) {
+            $html .= '<div id="field-reports-pagination"><ul>';
+            $numb = 1;            
+            for($i = 0; $i < $countReports; $i++){
+                if(!($i % 4 != 0)){
+                    $page = 3+$i;         
+                    $active = ($numb === 1) ? 'active-pagination' : '';
+                    $html .= '<li class="'.$active.'" data-page="'.$page.'">'.$numb.'</li>';
+                    $numb++;
+                }                
+            }
+            $html .= '</ul></div>';
+            $html .= '<script type="text/javascript">
+                jQuery(document).on("click","#field-reports-pagination li",function(){
+                        let allContent = jQuery("div.profile-field-report-content>div");
+                        allContent.addClass("d-none");
+                        jQuery("#field-reports-pagination li").removeClass("active-pagination");
+                        let pageNumb = jQuery(this).data("page");
+                        jQuery(this).addClass("active-pagination");
+                        jQuery("div.profile-field-report-content").addClass("d-none");
+                        jQuery("div.field-reports-loading").removeClass("d-none");
+
+                        setTimeout(function(){                            
+                            for(let i = 0; i < 4; i++){
+                                jQuery(allContent[pageNumb-i]).removeClass("d-none");
+                            }
+                            window.scrollTo(0,0);
+                            jQuery("div.field-reports-loading").addClass("d-none");
+                            jQuery("div.profile-field-report-content").removeClass("d-none");
+                        },500);
+                    })
+            </script>';
+        }        
+
+        return $html;
+    }
+
     public static function get_field_report_field($id,$field)
     {
         return get_field($field,$id);
     }
 
-    public static function get_field_report_template($report)
+    public static function get_field_report_template($report,$display = '')
     {
 
-        $fr_images = App::get_field_report_field($report->ID,'images');        
+        $fr_images = App::get_field_report_field($report->ID,'images');
+        $uwp_avatar = uwp_get_usermeta( $report->post_author, 'avatar_thumb', '' );
+        $avatar = ($uwp_avatar) ? '/app/uploads/'.$uwp_avatar : get_avatar_url($report->post_author);
         $fr_views = App::get_field_report_field($report->ID,'views');
         $excerpt = (strlen($report->post_excerpt) > 195) ? substr($report->post_excerpt, 0, 190) . '...' : $report->post_excerpt;
 
@@ -280,9 +334,10 @@ class App extends Controller
             "views" => $fr_views,
             "tags" => get_object_term_cache( $report->ID, 'tags' ),
             "url" => get_permalink($report->ID),
-            "author_avatar" => get_avatar_url($report->post_author),
+            "author_avatar" => $avatar,
             "author_name" => get_the_author_meta( 'display_name', $report->post_author ),
             "excerpt" => $excerpt,
+            "display" => $display,
         ]);
     }
 
@@ -313,4 +368,65 @@ class App extends Controller
         "ID" => $deal->ID,
       ]);
     }
+
+// Get User comments by Author ID
+    public static function get_all_comments_of_author($author_id)
+    {
+        $args = [
+            'user_id' => $author_id,
+            'post_type' => ['news','field-report','vip-deal'],
+            'orderby' => 'comment_post_ID'
+        ];
+        $comments = get_comments($args);
+        $templated_comments = self::get_comments_by_author_template($comments);
+
+        // Get All Comments
+        $html = '<div class="profile-all-comments p-4">';
+
+        // Loop Sorted Comments
+        foreach($templated_comments as $comments) :
+            $html .= '<div class="post-comments-wrap-by-author mb-5">';
+            $html .= $comments->html;
+            $html .= '</div>';
+        endforeach;
+
+        $html .= '</div>';
+        $html .= '<div class="all-comments-loading d-none"><i class="fas fa-circle-notch"></i></div>';
+        //return var_dump($templated_comments);
+        return $html;
+    }
+
+// Get Comment by Author Template
+    private static function get_comments_by_author_template($comments)
+    {   
+        $prev_postID = '';        
+        $comments_sorted = [];
+        foreach($comments as $key => $comment){
+            $html = '';          
+            if(empty($prev_postID) || !empty($prev_postID) && $prev_postID !== $comment->comment_post_ID){                
+                $post = get_post($comment->comment_post_ID);
+                $url = ($post->post_type == 'vip-deal' || 'field-report') ? $post->post_type.'s' : $post->post_type;
+                $url = '/'.$url.'/'.$post->post_name;
+                $html .= '<h4 class="comment-post-title"><a href="'.$url.'">'.$post->post_title.'</a></h4>';
+            }
+            $html .= '<div class="comment-wrap-by-author py-3 px-4 bg-light my-3">';
+            $html .= '<p class="comment-date font-weight-bold">'.date('F j, Y', strtotime($comment->comment_date)).'</p>';
+            $html .= '<p class="comment-content mb-1">'.$comment->comment_content.'</p>';
+            $html .= '</div>';
+            if(empty($prev_postID) || !empty($prev_postID) && $prev_postID !== $comment->comment_post_ID){
+                $comments_sorted[$comment->comment_post_ID] = (object)[
+                    'html' => $html,
+                    'latest_comment' => $comment->comment_date
+                ];
+                $prev_postID = $comment->comment_post_ID;
+            }else{
+                $comments_sorted[$comment->comment_post_ID]->html .= $html;
+            }
+        }
+        usort($comments_sorted, function($a, $b) {
+            return $a->latest_comment < $b->latest_comment; }
+        );
+        return $comments_sorted;
+    }
 }
+

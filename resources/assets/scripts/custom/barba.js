@@ -74,6 +74,11 @@ export default {
                 }
                 excludeID(initialPage);
               }
+              let currentUser = data.next.container.dataset.isUserloggedin;
+              let classes = data.next.container.dataset.bodyClass;
+              classes += (data.next.url.path === '/profile/'+currentUser) ? ' self-profile' : '';
+              $('body').attr('class', classes);
+              $('a.single-previous-url').attr('href',data.current.url.href);
               if($('body').hasClass('home')) window.contentUpdate.content[initialPage] = $('#dynamic-container').html();
           },
           beforeLeave: function () {
@@ -106,7 +111,9 @@ export default {
           },
           beforeEnter: function (data) {
             let classes = data.next.container.dataset.bodyClass;
+            let currentUser = data.next.container.dataset.isUserloggedin;
             let nextpage = data.next.namespace;
+            classes += (data.next.url.path === '/profile/'+currentUser) ? ' self-profile' : '';
             $('body').attr('class', classes);
             $('a.single-previous-url').attr('href',data.current.url.href);
             $('div.single-close').removeClass('d-none');

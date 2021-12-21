@@ -132,6 +132,7 @@ body {
   margin-top: 2rem;
   color: $dark;
   min-height: 83vh;
+  border-radius: 10px;
 
   article {
     margin: 2rem 0 3rem;
@@ -209,7 +210,7 @@ div.nav-account {
   }
 }
 
-body.profile.page a.profile,
+body.profile.page.self-profile a.profile,
 body.account.page a.manage-account {
   pointer-events: none;
   background-color: $dark;

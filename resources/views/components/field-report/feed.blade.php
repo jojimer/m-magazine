@@ -1,4 +1,4 @@
-<div class="field-report-block" data-post-id="{{$data->ID}}">
+<div class="field-report-block {{ $display }}" data-post-id="{{$data->ID}}">
 	<div class="content-preview" style="background-image: url({{ $images[0]['image'] }});">
 		<div class="fr-view-counter">@fas_icon('eye') {{ $views }}</div>
 		<div class="fr-main-info-wrap">
@@ -24,7 +24,8 @@
 				{{ $excerpt }}
 			<span class="fr-see-more"><a class="text-dark" href="{{ $url }}">See More @fas_icon('arrow-right')</a>
 		</div>
-		<div class="content-tags">
+		@if(count($tags) > 0)
+		<div class="content-tags">			
 			<p class="font-weight-bold">Tags</p>
 			<p class="fr-tags">
 				@foreach($tags as $tag)
@@ -33,6 +34,8 @@
 				@endforeach
 			</p>
 		</div>
+		@endif
+		@if($images)
 		<div class="content-images-preview">
 			<p class="font-weight-bold">More Images</p>
 			<ul>
@@ -46,5 +49,6 @@
 				<li><a class="text-dark" href="{{ $url }}">View More</a></li>
 			</ul>
 		</div>
+		@endif
 	</div>
 </div>

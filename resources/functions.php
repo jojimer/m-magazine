@@ -256,3 +256,33 @@ function my_logged_in_redirect() {
      
 }
 add_action( 'template_redirect', 'my_logged_in_redirect', 10, 3 );
+
+// ShortCode to get user field-reports in profile page
+function get_fieldreports_by_author( $atts ){
+    $user = uwp_get_displayed_user();
+    if(!$user) return;
+
+    $args = [
+        'author' => $user->data->ID,
+        'post_type' => 'field-report',
+        'order' => 'DESC',
+        'posts_per_page' => -1,
+    ];
+
+    $query = get_posts($args);
+    if(count($query) === 0) return;
+    wp_reset_postdata();
+    return App::field_report_by_author($query);
+}
+add_shortcode( 'fieldreports_by_author', 'get_fieldreports_by_author' );
+
+// ShortCode to get user all comments in profile page
+function get_all_comments_by_author( $atts ){
+    $user = uwp_get_displayed_user();
+    if(!$user){
+        return;
+    }
+
+    return APP::get_all_comments_of_author($user->data->ID);
+}
+add_shortcode( 'all_comments_by_author', 'get_all_comments_by_author' );

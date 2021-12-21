@@ -31,7 +31,8 @@ body.uwp_account_page.account {
       opacity: 1;
     }
 
-    &.uwp-account-logout {
+    &.uwp-account-logout,
+    &.uwp-account-notifications {
       display: none;
     }
   }
@@ -71,6 +72,10 @@ body.uwp_account_page.account {
 
 // Profile Page
 body.uwp_profile_page.profile {
+  div.uwp_widgets.uwp_widget_profile {
+    margin-bottom: 1rem;
+  }
+
   .uwp-profile-name a.btn {
     border-radius: 100%;
     border-width: 2px;
@@ -92,6 +97,10 @@ body.uwp_profile_page.profile {
     #tab-content {
       padding: 0 1rem 1.5rem;
       color: #4a586e;
+
+      div.field-report-block > .content-preview {
+        color: white;
+      }
     }
   }
 
@@ -111,5 +120,52 @@ body.uwp_profile_page.profile {
 
   div.uwp-profile-tabs {
     border-radius: 0 0 10px 10px;
+  }
+
+  div.field-reports-loading {
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+
+    svg {
+      font-size: 2.25rem;
+      animation: rotateCircleNotch 5s infinite;
+      animation-delay: -5s;
+      animation-timing-function: linear;
+    }
+
+    @keyframes rotateCircleNotch {
+      100% { transform: rotate(1420deg); }
+    }
+  }
+
+  div.comment-wrap-by-author {
+    border-radius: 6px;
+  }
+}
+
+#field-reports-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  padding: 2.5rem 0.5rem 0;
+
+  ul {
+    display: flex;
+    list-style: none;
+
+    li {
+      margin: 0 0.5rem;
+      color: $primary;
+      cursor: pointer;
+
+      &.active-pagination {
+        color: $dark;
+        pointer-events: none;
+      }
+    }
   }
 }

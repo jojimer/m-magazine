@@ -2,7 +2,10 @@
 <html {!! get_language_attributes() !!}>
   @include('partials.head')
   <body @php body_class() @endphp data-barba="wrapper">
-    @php do_action('get_header') @endphp
+    @php 
+      do_action('get_header'); 
+      $user = (!is_user_logged_in()) ? 'not-loggedin' : get_userdata(get_current_user_id())->user_login;
+    @endphp
     @include('partials.header')
     @php do_shortcode('[xoo_el_inline_form]',false) @endphp
     <div class="wrap container" role="document">
@@ -20,7 +23,7 @@
               </div>
             </div>
             @php $slug = App::slug(); @endphp
-            <div id="dynamic-container" class="col" data-barba="container" data-barba-namespace="{!! $slug !!}" data-body-class="{{ App::getClass() }}">
+            <div id="dynamic-container" class="col" data-barba="container" data-barba-namespace="{!! $slug !!}" data-is-userloggedin="{{ $user }}" data-body-class="{{ App::getClass() }}">
               @yield('content')
             </div>
           </div>

@@ -50,10 +50,11 @@
                 <span class="xoo-el-login-tgr">Login</span>
                 <span class="xoo-el-reg-tgr">Sign Up</span>
               @else
+              @php $user = get_userdata($userID); @endphp
                 <div class="logged-in-user">
-                  <span>Hello, {{ get_user_meta( $userID, 'first_name', true ) }}</span>
+                  <span>Hello, {{ $user->display_name }}</span>
                   <span><a class="manage-account" href="/account" class="text-dark">Manage Account</a></span>
-                  <span><a class="profile" href="/profile" class="text-dark">Profile</a></span>
+                  <span><a class="profile" href="/profile/{{ $user->user_login }}" class="text-dark">Profile</a></span>
                   <span><a class="text-dark" href="{{ str_replace('&amp;', '&', wp_logout_url('news')) }}">Logout</a></span>
                 </div>
               @endif
