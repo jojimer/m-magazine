@@ -23,7 +23,7 @@
 	</section>
 	<section class="masonry-wrap">
 	@foreach($images as $index => $image)
-	  <img src="{{ $image['image'] }}" alt="{{ $image['title'] }}" />
+	  <img class="lozad" data-src="{{ $image['image'] }}" alt="{{ $image['title'] }}" />
 	@endforeach
 	</section>
 	<section class="fr-author-info bg-secondary my-5 p-5">
@@ -31,7 +31,7 @@
 		<div class="fr-author">			
 			<div class="fr-author-details">
 				<span class="profile-picture">
-					<img src="{{ $author_avatar }}" alt="{{ $author_name }}">
+					<img class="lozad" data-src="{{ $author_avatar }}" alt="{{ $author_name }}">
 				</span>
 				<p class="h5 font-weight-bold mt-2 mb-0">{{ $author_name }}</p>
 				<p class="font-weight-light">Author</p>

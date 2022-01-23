@@ -7,7 +7,7 @@
 	      	$views = App::get_news_single_field($news->ID,'views');
 	      	$url = get_permalink($news->ID);
 	    @endphp
-		<div class="col" style="background-image: url({{ $thumbnail }}); background-position: {{ $image_position }};" data-post-id="{{$news->ID}}">
+		<div class="col bg-lozad" data-src="{{ $thumbnail }}" style="background-position: {{ $image_position }};" data-post-id="{{$news->ID}}">
 			<div class="news-feed-control">
 			<button class="btn save-bookmark-btn" title="Save">@far_icon('bookmark')</button>
 				<a href="{{ $url }}" class="btn btn-primary open-link-btn">Read More</a>	

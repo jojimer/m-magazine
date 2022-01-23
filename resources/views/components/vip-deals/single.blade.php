@@ -1,13 +1,13 @@
 <div class="vip-deal-single-wrap">
 	<div class="vip-deal-single-close single-close d-none"><a href="/" class="single-previous-url text-dark">@fas_icon('arrow-left')</a></div>
-	<div class="vip-deal-single-block" style="background-image: url({{ $vip_deal['image'] }}); background-position: {{ $vip_deal['image_position'] }};">
+	<div class="vip-deal-single-block bg-lozad" data-src="{{ $vip_deal['image'] }}" style="background-position: {{ $vip_deal['image_position'] }};">
 
 		<div>			
 			<p class="vip-deal-main-text h1">{{ $vip_deal['title'] }}</p>
 			<p class="vip-deal-sub-category h4 font-weight-bold">{{ $vip_deal['subtitle'] }}</p>
 		</div>
 		<div class="vip-icon">
-			<img src="@asset('images/vip.jpg')" alt="profile-name">
+			<img class="lozad" data-src="@asset('images/vip.jpg')" alt="profile-name">
 		</div>
 		<div class="call-to-action">
 			<span>@fas_icon('eye') {{ $vip_deal['views'] }}</span>

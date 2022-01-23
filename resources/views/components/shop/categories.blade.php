@@ -1,6 +1,6 @@
 <div class="shop-categories" data-post-id="{{$ID}}">
 	@foreach($categories as $category)
-		<div class="sgb" style="background-image: url({{ $category['image'] }});">
+		<div class="sgb bg-lozad" data-src="{{ $category['image'] }}">
 		 	<div class="cta-category">
 		 		<div class="cta-category-text">
 		 			<span>{{ $category['subtitle'] }}</span>

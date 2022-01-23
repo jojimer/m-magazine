@@ -105,31 +105,15 @@ class App extends Controller
         return $query;
     }
 
-    public static function get_news_single_field($id,$field,$group = '',$single = false)
+    public static function get_news_single_field($id,$field,$single = false)
     {
-        if(strlen($group) < 1) {
-            $field_value = get_field($field,$id);
-            if($field == 'excerpt' && !$single){
-                $field_value = (strlen($field_value) > 195) ? 
-                substr($field_value, 0, 190) . '...' : $field_value;
-            }
-            
-            return $field_value;
-        }elseif($field == 'url_image'){
-            $group_data = get_field($group,$id);
-            if ( is_array( $group_data ) && array_key_exists( $field, $group_data ) ) {
-                return $group_data[ $field ];
-            }elseif( is_array( $group_data ) && array_key_exists( 'uploaded_image', $group_data ) ){
-                return $group_data['uploaded_image'];
-            }else{
-                return NULL;
-            }
-        }else{
-            $group_data = get_field($group,$id);
-            if ( is_array( $group_data ) && array_key_exists( $field, $group_data ) ) {
-                return $group_data[ $field ];
-            }
-        }       
+        $field_value = get_field($field,$id);
+        if($field == 'excerpt' && !$single){
+            $field_value = (strlen($field_value) > 195) ? 
+            substr($field_value, 0, 190) . '...' : $field_value;
+        }
+        
+        return $field_value;
     }
 
     public static function get_news_template($news)
@@ -137,8 +121,8 @@ class App extends Controller
         return \App\template('component::news.feed',
         [
           "data" => $news,
-          "thumbnail" => App::get_news_single_field($news->ID,'url_image','thumbnail'),
-          "image_position" => App::get_news_single_field($news->ID,'image_position','thumbnail'),
+          "thumbnail" => App::get_news_single_field($news->ID,'url_image'),
+          "image_position" => App::get_news_single_field($news->ID,'image_position'),
           "caption" => App::get_news_single_field($news->ID,'excerpt'),
           "views" => App::get_news_single_field($news->ID,'views'),
           "url" => get_permalink($news->ID)

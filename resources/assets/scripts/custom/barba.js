@@ -2,6 +2,7 @@
 import barba from '@barba/core';
 import gsap from 'gsap';
 import ajaxContentLoader from './ajax-content-loader';
+import lozad from 'lozad';
 
 export default {
   init() {
@@ -14,6 +15,23 @@ export default {
             'field-reports' : 4,
             'page' : 5,
           };
+
+    //Run Lozard
+    const imgObserver = lozad('.lozad', {
+      rootMargin: '500px 0px',
+      threshold: 0.1,
+      load: function(el) {
+        el.src = el.dataset.src;
+      },
+    });
+
+    const bgObserver = lozad('.bg-lozad', {
+      rootMargin: '500px 0px',
+      threshold: 0.1,
+      load: function(el) {
+        el.style.backgroundImage = 'url('+el.dataset.src+')';
+      },
+    });
 
     // Get top navigation menu selector
     let nav = $('.banner .navbar-nav li');
@@ -80,6 +98,8 @@ export default {
               $('body').attr('class', classes);
               $('a.single-previous-url').attr('href',data.current.url.href);
               if($('body').hasClass('home')) window.contentUpdate.content[initialPage] = $('#dynamic-container').html();
+              imgObserver.observe();
+              bgObserver.observe();
           },
           beforeLeave: function () {
             // Remove Lightbox if open
@@ -141,7 +161,9 @@ export default {
                 $('#top-feed').removeClass('hide-dynamic-container');
               },500)
             }
-            gsap.from(data.next.container, 2, {opacity: 0});  
+            gsap.from(data.next.container, 2, {opacity: 0});
+            imgObserver.observe();
+            bgObserver.observe();
           },
         },
       ],

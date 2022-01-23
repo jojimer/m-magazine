@@ -16,7 +16,7 @@
 			<span>{{ date('F j, Y', strtotime($data->post_date)) }}</span>
 		</p>
 	</div>
-	<div class="news-single-block" style="background-image: url({{ $thumbnail }}); background-position: {{ $image_position }};">
+	<div class="news-single-block bg-lozad" data-src="{{ $thumbnail }}" style="background-position: {{ $image_position }};">
 		<div class="external-link-wrap"><a class="external-link" href="{{ $news_url }}" target="_blank">@fas_icon('external-link-alt')</a></div>
 		<div class="news-info px-4">
 			<div class="news-excerpt">{{ $excerpt }}</div>

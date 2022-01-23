@@ -1,9 +1,9 @@
 <div class="field-report-block {{ $display }}" data-post-id="{{$data->ID}}">
-	<div class="content-preview" style="background-image: url({{ $images[0]['image'] }});">
+	<div class="content-preview bg-lozad" data-src="{{ $images[0]['image'] }}">
 		<div class="fr-view-counter">@fas_icon('eye') {{ $views }}</div>
 		<div class="fr-main-info-wrap">
 			<div class="profile-picture">
-				<img src="{{ $author_avatar }}" alt="{{ $author_name }}">
+				<img class="lozad" data-src="{{ $author_avatar }}" alt="{{ $author_name }}">
 			</div>				
 			<div class="fr-info">
 				<p class="h2">{{ $data->post_title }}</p>
@@ -42,7 +42,7 @@
 				@foreach($images as $i => $image)
 					@if($i < 7)
 						<li>
-							<img class="img-prev" src="{{ $image['image'] }}" alt="{{ $data->post_title }} {{ $i }}">
+							<img class="img-prev lozad" data-src="{{ $image['image'] }}" alt="{{ $data->post_title }} {{ $i }}">
 						</li>
 					@endif		
 				@endforeach

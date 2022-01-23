@@ -1,4 +1,4 @@
-<div class="news-feed-block mm-news" data-post-id="{{$data->ID}}" style="background-image: url({{ $thumbnail }}); background-position: {{ $image_position }};">
+<div class="news-feed-block mm-news bg-lozad" data-post-id="{{$data->ID}}" data-src="{{ $thumbnail }}" style="background-position: {{ $image_position }};">
 	<div class="news-feed-control">
 		<button class="btn save-bookmark-btn" title="Save">@far_icon('bookmark')</button>
 		<a href="{{ $url }}" class="btn btn-primary open-link-btn">Read More</a>	
