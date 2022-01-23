@@ -4,7 +4,7 @@
 		<p class="vip-deal-sub-category h4 font-weight-bold">{{ $deal['subtitle'] }}</p>
 	</div>
 	<div class="vip-icon">
-		<img class="lozad" data-src="@asset('images/vip.jpg')" alt="profile-name">
+		<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="@asset('images/vip.jpg')" alt="profile-name">
 	</div>
 	<div class="call-to-action">
 		<span>@fas_icon('eye') {{ $deal['views'] }}</span>	

@@ -6,7 +6,7 @@ export default {
 			'post_type' : {'home' : 'home','news' : 'news', 'galleries' : 'gallery', 'shop' : 'shop-product', 'field-reports' : 'field-report' },
 		}
 	},
-	init() {
+	init(callback) {
 		// Set function for scrolling at the bottom and load content
 		const loadContentAtTheBottom = () => {
 			let page = this.staticData().container.data('barba-namespace');			
@@ -17,7 +17,7 @@ export default {
 
 				if (offset >= height-3500 && $('#loading-content').hasClass('d-none')) {
 					$('#loading-content').removeClass('d-none');
-					this.getContent(this.staticData().post_type[page],page);
+					this.getContent(this.staticData().post_type[page],page,callback);
 				}
 			}else{
 				let textPage = (page !== 'home') ? ' '+page : '';
@@ -30,7 +30,7 @@ export default {
 
 		return loadContentAtTheBottom;
 	},
-	getContent(post_type,page) {		
+	getContent(post_type,page,callback) {		
 		// galleryUpdate,fieldReportUpdate,homeUpdate;
 
 		let contentLoaded = '['+window.contentUpdate.exclude[page]+']';
@@ -66,7 +66,8 @@ export default {
 					}else{
 						window.contentUpdate.content[page] = staticData.container.html();
 					}
-					window.contentUpdate.exclude[page] = result.data.exclude;	
+					window.contentUpdate.exclude[page] = result.data.exclude;
+					return callback();
 				},randomNumber)
 			}else{
 				$('main.main').addClass(page+'-ended');

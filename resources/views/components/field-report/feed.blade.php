@@ -42,7 +42,7 @@
 				@foreach($images as $i => $image)
 					@if($i < 7)
 						<li>
-							<img class="img-prev lozad" data-src="{{ $image['image'] }}" alt="{{ $data->post_title }} {{ $i }}">
+							<img class="img-prev lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="{{ $image['image'] }}" alt="{{ $data->post_title }} {{ $i }}">
 						</li>
 					@endif		
 				@endforeach

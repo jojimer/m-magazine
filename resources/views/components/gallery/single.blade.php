@@ -29,7 +29,7 @@
 	</div>	
 	<section class="masonry-wrap">
 	@foreach($images as $index => $image)
-	  <img class="lozad" data-src="{{ $image['gallery_image'] }}" alt="{{ $image['image_caption'] }}" />
+	  <img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="{{ $image['gallery_image'] }}" alt="{{ $image['image_caption'] }}" />
 	@endforeach
 	</section>	
 </div>

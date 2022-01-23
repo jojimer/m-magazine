@@ -37,9 +37,9 @@
                    $userID = get_current_user_id();
                    $avatar = uwp_get_usermeta( $userID, 'avatar_thumb', '' );
                    if(!empty($avatar)){
-                    echo '<img class="lozad" id="profile_avatar" data-src="/app/uploads/'.$avatar.'">';
+                    echo '<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" id="profile_avatar" data-src="/app/uploads/'.$avatar.'">';
                    }else{
-                    echo '<img class="lozad" id="profile_avatar" data-src="'. esc_url( get_avatar_url($userID) ) .'" />';
+                    echo '<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" id="profile_avatar" data-src="'. esc_url( get_avatar_url($userID) ) .'" />';
                    }
                   @endphp
                 </span>

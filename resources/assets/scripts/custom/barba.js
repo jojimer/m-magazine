@@ -16,28 +16,41 @@ export default {
             'page' : 5,
           };
 
-    //Run Lozard
-    const imgObserver = lozad('.lozad', {
-      rootMargin: '500px 0px',
-      threshold: 0.1,
-      load: function(el) {
-        el.src = el.dataset.src;
-      },
-    });
+    //Initialize Lozad
+    let initLozad = function(classSelector) {
+      //Observe selected img element
+      return lozad(classSelector, {
+        rootMargin: '500px 0px',
+        threshold: 0.1,
+        load: function(el) {          
+          if(classSelector === '.lozad'){
+            el.src = el.dataset.src;
+            el.classList.remove('lozad');
+          }else{
+            el.style.backgroundImage = 'url('+el.dataset.src+')';
+            setTimeout(function(){
+              el.classList.remove('bg-lozad');
+            },500)
+          }          
+        },
+      });
+    }
 
-    const bgObserver = lozad('.bg-lozad', {
-      rootMargin: '500px 0px',
-      threshold: 0.1,
-      load: function(el) {
-        el.style.backgroundImage = 'url('+el.dataset.src+')';
-      },
-    });
+    let loadImage = function() {
+      initLozad('.lozad').observe();
+      initLozad('.bg-lozad').observe();
+    }
+
+    const updatePageContent = function(namespace){
+      $('#dynamic-container').append(window.contentUpdate.content[namespace]);
+      loadImage();
+    }
 
     // Get top navigation menu selector
     let nav = $('.banner .navbar-nav li');
 
     // Instanciate Ajax Content Loader
-    let contentLoader = ajaxContentLoader.init();
+    let contentLoader = ajaxContentLoader.init(loadImage);
 
     // Find Excluded ID
     const excludeID = function(namespace) {
@@ -98,8 +111,7 @@ export default {
               $('body').attr('class', classes);
               $('a.single-previous-url').attr('href',data.current.url.href);
               if($('body').hasClass('home')) window.contentUpdate.content[initialPage] = $('#dynamic-container').html();
-              imgObserver.observe();
-              bgObserver.observe();
+              loadImage();
           },
           beforeLeave: function () {
             // Remove Lightbox if open
@@ -144,26 +156,30 @@ export default {
             }
           },
           enter: function (data) {
-            const namespace = data.next.namespace;
-            if(mainpage[namespace] !== 0 && mainpage[namespace] < 5 && !$('body').hasClass('single')){
-              if(window.contentUpdate.content[namespace].length > 0) {                
+            let processPage = function(callback){ 
+              const namespace = data.next.namespace;
+              if(mainpage[namespace] !== 0 && mainpage[namespace] < 5 && !$('body').hasClass('single')){
+                if(window.contentUpdate.content[namespace].length > 0) {                
+                  setTimeout(function(){
+                    updatePageContent(namespace);
+                    $('#loading-content').appendTo($('#dynamic-container[data-barba-namespace='+namespace+']'));
+                  },500)
+                }else if(!$('main.main').hasClass(namespace+'-event-active') && !$('main.main').hasClass(namespace+'-ended')){
+                  excludeID(namespace);           
+                }  
+              }else if($('body').hasClass('home') && window.contentUpdate.content[namespace] !== 0){
+                $('#top-feed').addClass('hide-dynamic-container');
                 setTimeout(function(){
-                  $('#dynamic-container').append(window.contentUpdate.content[namespace]);
-                  $('#loading-content').appendTo($('#dynamic-container[data-barba-namespace='+namespace+']'));
+                  updatePageContent(namespace);
+                  $('#top-feed').removeClass('hide-dynamic-container');
+                  console.log('Home page updating content');
                 },500)
-              }else if(!$('main.main').hasClass(namespace+'-event-active') && !$('main.main').hasClass(namespace+'-ended')){
-                excludeID(namespace);
               }
-            }else if($('body').hasClass('home') && window.contentUpdate.content[namespace] !== 0){
-              $('#top-feed').addClass('hide-dynamic-container');
-              setTimeout(function(){
-                $('#dynamic-container').html(window.contentUpdate.content[namespace]);
-                $('#top-feed').removeClass('hide-dynamic-container');
-              },500)
+
+              return callback();
             }
+            processPage(loadImage);
             gsap.from(data.next.container, 2, {opacity: 0});
-            imgObserver.observe();
-            bgObserver.observe();
           },
         },
       ],
