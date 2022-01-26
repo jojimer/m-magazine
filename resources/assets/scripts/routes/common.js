@@ -2,6 +2,7 @@ import barba from '../custom/barba';
 import galleryPreview from '../custom/gallery/preview';
 import singleGallery from '../custom/gallery/single';
 import singleFieldReport from '../custom/field-report/single';
+import lozad from '../custom/initLozad';
 
 export default {
   contentInit() {
@@ -17,7 +18,13 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     $.post(ajax_object.ajax_url, {action: 'is_user_admin'}, function (notAdmin) {
-      if (notAdmin) barba.init();
+        if (notAdmin){
+          barba.init();
+        }        
+        else{
+          lozad.init('.lozad').observe();
+          lozad.init('.bg-lozad').observe();
+        }
     });
 
     this.contentInit()

@@ -2,7 +2,7 @@
 import barba from '@barba/core';
 import gsap from 'gsap';
 import ajaxContentLoader from './ajax-content-loader';
-import lozad from 'lozad';
+import lozad from './initLozad';
 
 export default {
   init() {
@@ -16,29 +16,29 @@ export default {
             'page' : 5,
           };
 
-    //Initialize Lozad
-    let initLozad = function(classSelector) {
-      //Observe selected img element
-      return lozad(classSelector, {
-        rootMargin: '500px 0px',
-        threshold: 0.1,
-        load: function(el) {          
-          if(classSelector === '.lozad'){
-            el.src = el.dataset.src;
-            el.classList.remove('lozad');
-          }else{
-            el.style.backgroundImage = 'url('+el.dataset.src+')';
-            setTimeout(function(){
-              el.classList.remove('bg-lozad');
-            },500)
-          }          
-        },
-      });
-    }
+    // //Initialize Lozad
+    // let initLozad = function(classSelector) {
+    //   //Observe selected img element
+    //   return lozad(classSelector, {
+    //     rootMargin: '500px 0px',
+    //     threshold: 0.1,
+    //     load: function(el) {          
+    //       if(classSelector === '.lozad'){
+    //         el.src = el.dataset.src;
+    //         el.classList.remove('lozad');
+    //       }else{
+    //         el.style.backgroundImage = 'url('+el.dataset.src+')';
+    //         setTimeout(function(){
+    //           el.classList.remove('bg-lozad');
+    //         },500)
+    //       }          
+    //     },
+    //   });
+    // }
 
     let loadImage = function() {
-      initLozad('.lozad').observe();
-      initLozad('.bg-lozad').observe();
+      lozad.init('.lozad').observe();
+      lozad.init('.bg-lozad').observe();
     }
 
     const updatePageContent = function(namespace){
