@@ -161,6 +161,7 @@ export default {
             //Add scroll event to window if page is in the main menu
             if(mainpage[nextpage] || $('body').hasClass('home') && !$('body').hasClass('single')){
                 window.addEventListener('scroll', contentLoader, true);
+                console.log(scrollY)
             }else{
               window.scrollTo(0, 0);              
             }
