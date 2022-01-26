@@ -88,10 +88,16 @@ body.single-news {
   .news-single-block {
     @extend .news-feed-block;
 
-    position: relative;
+    background-repeat: no-repeat;
+    height: 100% !important;
+    background-position: top center !important;
 
     .news-excerpt {
       width: 100% !important;
+    }
+
+    .news-info {
+      margin-top: 35rem;
     }
 
     .external-link-wrap {

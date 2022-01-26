@@ -46,6 +46,13 @@ export default {
       loadImage();
     }
 
+    // Get Scroll Position
+    let scrollY = 0;
+    const getScrollPositionY = function(){
+      if(!$('body').hasClass('single')) scrollY = window.pageYOffset;
+      return null;
+    }
+
     // Get top navigation menu selector
     let nav = $('.banner .navbar-nav li');
 
@@ -64,7 +71,7 @@ export default {
         }        
       }
       window.contentUpdate.exclude[namespace] = excluding;
-    }
+    }    
 
     // Set global variables
     window.contentUpdate = {
@@ -105,6 +112,7 @@ export default {
                 }
                 excludeID(initialPage);
               }
+              window.addEventListener('scroll', getScrollPositionY, true);
               let currentUser = data.next.container.dataset.isUserloggedin;
               let classes = data.next.container.dataset.bodyClass;
               classes += (data.next.url.path === '/profile/'+currentUser) ? ' self-profile' : '';
@@ -119,7 +127,7 @@ export default {
           },
           leave: function (data) {
             // Run GSAP Animation
-            gsap.to(data.current.container, 1, {opacity: 0});
+            gsap.to(data.current.container, 0.25, {opacity: 0});
 
             
             // Find and set new active and before active top navigation menu
@@ -152,7 +160,9 @@ export default {
 
             //Add scroll event to window if page is in the main menu
             if(mainpage[nextpage] || $('body').hasClass('home') && !$('body').hasClass('single')){
-                window.addEventListener('scroll', contentLoader, true);   
+                window.addEventListener('scroll', contentLoader, true);
+            }else{
+              window.scrollTo(0, 0);              
             }
           },
           enter: function (data) {
@@ -172,14 +182,14 @@ export default {
                 setTimeout(function(){
                   updatePageContent(namespace);
                   $('#top-feed').removeClass('hide-dynamic-container');
-                  console.log('Home page updating content');
+                  //console.log('Home page updating content');
                 },500)
               }
 
               return callback();
             }
             processPage(loadImage);
-            gsap.from(data.next.container, 2, {opacity: 0});
+            gsap.from(data.next.container, 1, {opacity: 0});
           },
         },
       ],
