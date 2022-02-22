@@ -16,26 +16,6 @@ export default {
             'page' : 5,
           };
 
-    // //Initialize Lozad
-    // let initLozad = function(classSelector) {
-    //   //Observe selected img element
-    //   return lozad(classSelector, {
-    //     rootMargin: '500px 0px',
-    //     threshold: 0.1,
-    //     load: function(el) {          
-    //       if(classSelector === '.lozad'){
-    //         el.src = el.dataset.src;
-    //         el.classList.remove('lozad');
-    //       }else{
-    //         el.style.backgroundImage = 'url('+el.dataset.src+')';
-    //         setTimeout(function(){
-    //           el.classList.remove('bg-lozad');
-    //         },500)
-    //       }          
-    //     },
-    //   });
-    // }
-
     let loadImage = function() {
       lozad.init('.lozad').observe();
       lozad.init('.bg-lozad').observe();
@@ -161,7 +141,7 @@ export default {
             //Add scroll event to window if page is in the main menu
             if(mainpage[nextpage] || $('body').hasClass('home') && !$('body').hasClass('single')){
                 window.addEventListener('scroll', contentLoader, true);
-                console.log(scrollY)
+                console.log('incomplete function get back to scrollY after get back to same page'+scrollY)
             }else{
               window.scrollTo(0, 0);              
             }

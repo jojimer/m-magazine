@@ -48,7 +48,7 @@
   <div class="arrowl"></div>
   <div class="close"></div>
   <div class="img-container"></div>
-  <div class="title"></div>
+  <div class="title d-none"></div>
 </div>
 
 @php wp_reset_postdata(); @endphp

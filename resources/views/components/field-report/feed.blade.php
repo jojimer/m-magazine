@@ -8,7 +8,7 @@
 			<div class="fr-info">
 				<p class="h2">{{ $data->post_title }}</p>
 				<p class="h5 font-weight-bold">{{ $author_name }}</p>
-				<p class="font-weight-light">Author</p>
+				<p class="font-weight-light mt-1">Author</p>
 			</div>
 			<div class="fr-date">
 				<p class="font-weight-light">

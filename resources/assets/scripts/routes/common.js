@@ -19,7 +19,7 @@ export default {
     // JavaScript to be fired on all pages
     $.post(ajax_object.ajax_url, {action: 'is_user_admin'}, function (notAdmin) {
         if (notAdmin){
-          barba.init();
+          barba.init();          
         }        
         else{
           lozad.init('.lozad').observe();

@@ -116,9 +116,10 @@ function remove_default_post_type() {
 }
 
 // Hide Admin bar to subscriber
-add_action('set_current_user', 'cc_hide_admin_bar');
+add_action('init', 'cc_hide_admin_bar');
 function cc_hide_admin_bar() {
-    if (!current_user_can('edit_posts')) {
+    $user = wp_get_current_user();
+    if (!current_user_can('edit_posts') || in_array( 'vip-member', (array) $user->roles )) {
         show_admin_bar(false);
     }
 }
@@ -126,8 +127,7 @@ function cc_hide_admin_bar() {
 // Don't run BarbaJS when admin user is logged-in
 function ajax_check_user_is_admin() {
     $user = wp_get_current_user();
-    echo ( in_array( 'subscriber', (array) $user->roles ) && is_user_logged_in() || !is_user_logged_in()) ? true : false;
-    die();
+    echo ( in_array( 'subscriber', (array) $user->roles ) || in_array( 'vip-member', (array) $user->roles ) && is_user_logged_in() || !is_user_logged_in()) ? true : false;
 }
 
 // Hide CPT Notice
@@ -286,3 +286,6 @@ function get_all_comments_by_author( $atts ){
     return APP::get_all_comments_of_author($user->data->ID);
 }
 add_shortcode( 'all_comments_by_author', 'get_all_comments_by_author' );
+
+// Add VIP role
+add_role( 'vip-member', 'VIP Member', get_role( 'subscriber' )->capabilities );

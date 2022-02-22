@@ -27,12 +27,15 @@
     }
 
     span.avatar-holder:nth-child(2) {
-      width: 40px;
+      max-width: 31px;
+      max-height: 31px;
 
       & > img#profile_avatar {
-        width: 100%;
+        width: 40px;
+        height: 40px;
         border-radius: 100%;
         border: 2.5px solid white;
+        background-color: $secondary;
       }
     }
   }

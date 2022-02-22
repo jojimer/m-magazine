@@ -7,6 +7,12 @@ body.uwp_page {
   #uwp-profile-modal-title {
     color: $dark;
   }
+
+  .remove-sr-only .sr-only {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 // Account Page

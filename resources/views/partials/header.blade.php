@@ -32,14 +32,14 @@
                   @far_icon('user')
                 </span>
               @else
-                <span class="avatar-holder mx-3 account-icon">
+                <span class="avatar-holder mx-3 account-icon mt-n2">
                   @php
                    $userID = get_current_user_id();
                    $avatar = uwp_get_usermeta( $userID, 'avatar_thumb', '' );
                    if(!empty($avatar)){
-                    echo '<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" id="profile_avatar" data-src="/app/uploads/'.$avatar.'">';
+                    echo '<img data-placeholder-background="rgba(0, 0, 0, 0.2)" id="profile_avatar" src="/app/uploads/'.$avatar.'">';
                    }else{
-                    echo '<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" id="profile_avatar" data-src="'. esc_url( get_avatar_url($userID) ) .'" />';
+                    echo '<img data-placeholder-background="rgba(0, 0, 0, 0.2)" id="profile_avatar" src="'. esc_url( get_avatar_url($userID) ) .'" />';
                    }
                   @endphp
                 </span>
