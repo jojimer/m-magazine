@@ -364,19 +364,23 @@ class App extends Controller
         $comments = get_comments($args);
         $templated_comments = self::get_comments_by_author_template($comments);
 
-        // Get All Comments
-        $html = '<div class="profile-all-comments p-4">';
+        $html = '';
+        if(count($comments) !== 0) :
+            // Get All Comments
+            $html = '<div class="profile-all-comments p-4">';
 
-        // Loop Sorted Comments
-        foreach($templated_comments as $comments) :
-            $html .= '<div class="post-comments-wrap-by-author mb-5">';
-            $html .= $comments->html;
+            // Loop Sorted Comments
+            foreach($templated_comments as $comments) :
+                $html .= '<div class="post-comments-wrap-by-author mb-5">';
+                $html .= $comments->html;
+                $html .= '</div>';
+            endforeach;
+
             $html .= '</div>';
-        endforeach;
-
-        $html .= '</div>';
-        $html .= '<div class="all-comments-loading d-none"><i class="fas fa-circle-notch"></i></div>';
-        //return var_dump($templated_comments);
+            $html .= '<div class="all-comments-loading d-none"><i class="fas fa-circle-notch"></i></div>';
+            //return var_dump($templated_comments);
+        endif;
+        
         return $html;
     }
 
