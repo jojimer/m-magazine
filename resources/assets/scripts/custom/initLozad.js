@@ -11,7 +11,7 @@ export default {
             el.src = el.dataset.src;
             el.classList.remove('lozad');
           }else{
-            el.style.backgroundImage = 'url('+el.dataset.src+')';
+            el.style.backgroundImage = 'image-set('+el.dataset.src+')';
             setTimeout(function(){
               el.classList.remove('bg-lozad');
             },500)

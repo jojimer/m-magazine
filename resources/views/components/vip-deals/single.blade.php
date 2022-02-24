@@ -1,6 +1,6 @@
 <div class="vip-deal-single-wrap">
 	<div class="vip-deal-single-close single-close d-none"><a href="/" class="single-previous-url text-dark">@fas_icon('arrow-left')</a></div>
-	<div class="vip-deal-single-block bg-lozad" data-src="{{ $vip_deal['image'] }}" style="background-position: {{ $vip_deal['image_position'] }};">
+	<div class="vip-deal-single-block bg-lozad" data-src="{{ Utility::getImageSrcSet($vip_deal['image'],'medium_large') }}" style="background-position: {{ $vip_deal['image_position'] }};">
 
 		<div>			
 			<p class="vip-deal-main-text h1">{{ $vip_deal['title'] }}</p>

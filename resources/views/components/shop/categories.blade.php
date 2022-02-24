@@ -1,6 +1,6 @@
 <div class="shop-categories" data-post-id="{{$ID}}">
 	@foreach($categories as $category)
-		<div class="sgb bg-lozad" data-src="{{ $category['image'] }}">
+		<div class="sgb bg-lozad" data-src="'{{ Utility::acf_thumbnail($category['image'],'medium_large') }}' 1x">
 		 	<div class="cta-category">
 		 		<div class="cta-category-text">
 		 			<span>{{ $category['subtitle'] }}</span>

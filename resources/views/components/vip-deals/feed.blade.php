@@ -1,4 +1,4 @@
-<div class="vip-deal-block bg-lozad" data-post-id="{{$ID}}" data-src="{{ $deal['image'] }}" style="background-position: {{ $deal['image_position'] }};">
+<div class="vip-deal-block bg-lozad" data-post-id="{{$ID}}" data-src="{{ Utility::getImageSrcSet($deal['image'],'medium_large') }}" style="background-position: {{ $deal['image_position'] }};">
 	<div>			
 		<p class="vip-deal-main-text h1">{{ $deal['title'] }}</p>
 		<p class="vip-deal-sub-category h4 font-weight-bold">{{ $deal['subtitle'] }}</p>

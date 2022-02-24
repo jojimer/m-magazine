@@ -23,7 +23,7 @@
 	</section>
 	<section class="masonry-wrap">
 	@foreach($images as $index => $image)
-	  <img class="lozad"  data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="{{ $image['image'] }}" alt="{{ $image['title'] }}" />
+	  <img class="lozad"  data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="{{ Utility::acf_thumbnail($image['image'],'large') }}" alt="{{ $image['title'] }}" />
 	@endforeach
 	</section>
 	<section class="fr-author-info bg-secondary my-5 p-5">

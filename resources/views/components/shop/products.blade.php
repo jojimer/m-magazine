@@ -1,6 +1,6 @@
 <div class="products-block" data-post-id="{{$ID}}">
 	@foreach($products as $product)
-		<div class="product bg-lozad" data-src="{{ $product['image'] }}">
+		<div class="product bg-lozad" data-src="'{{ Utility::acf_thumbnail($product['image'],'medium_large') }}' 1x">
 		 	<div class="cta-product">
 		 		<div class="cta-product-text">
 		 			<span>{{ $product['subtitle'] }}</span>

@@ -57,15 +57,14 @@ class App extends Controller
     }
 
 // HOME PAGE FUNCTIONS
-    private static function getHomeContent($offset,$per_page,$orderby,$term)
+    private static function getHomeContent($offset,$per_page)
     {
         $args = [
             'post_type' => ['news','gallery','shop-product','field-report','vip-deal'],
             'posts_per_page' => $per_page,
-            'orderby' => $orderby,
+            'orderby' => 'date',
             'order' => 'DESC',
             'post__not_in' => $offset,
-            'tax_query' => $term
         ];
 
         $query = get_posts($args);
@@ -118,15 +117,19 @@ class App extends Controller
 
     public static function get_news_template($news)
     {
-        return \App\template('component::news.feed',
-        [
-          "data" => $news,
-          "thumbnail" => App::get_news_single_field($news->ID,'url_image'),
-          "image_position" => App::get_news_single_field($news->ID,'image_position'),
-          "caption" => App::get_news_single_field($news->ID,'excerpt'),
-          "views" => App::get_news_single_field($news->ID,'views'),
-          "url" => get_permalink($news->ID)
-        ]);
+      $thumbnail = App::get_news_single_field($news->ID,'thumbnail');
+      $image_src = App::get_news_single_field($news->ID,$thumbnail);
+      $image = ($thumbnail === 'url_image') ? 'url("'.$image_src.'") 1x' : Utility::getImageSrcSet($image_src);
+
+      return \App\template('component::news.feed',
+      [
+        "data" => $news,
+        "thumbnail" => $image,
+        "image_position" => App::get_news_single_field($news->ID,'image_position'),
+        "caption" => App::get_news_single_field($news->ID,'excerpt'),
+        "views" => App::get_news_single_field($news->ID,'views'),
+        "url" => get_permalink($news->ID)
+      ]);
     }
 
 // GALLERY FUNCTIONS
