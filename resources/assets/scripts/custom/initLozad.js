@@ -12,6 +12,7 @@ export default {
             el.classList.remove('lozad');
           }else{
             el.style.backgroundImage = 'image-set('+el.dataset.src+')';
+            el.style.backgroundImage = '-webkit-image-set('+el.dataset.src+')';
             setTimeout(function(){
               el.classList.remove('bg-lozad');
             },500)

@@ -32,7 +32,7 @@ class Utility extends Controller
     );
 
     foreach($sizes as $size => $value){
-      $imagesSet .= '"'.self::acf_thumbnail($id,$size).'"'.$value;
+      $imagesSet .= 'url("'.self::acf_thumbnail($id,$size).'")'.$value;
     }
 
     return $imagesSet;
