@@ -4,11 +4,14 @@
   @while(have_posts()) 
   @php 
   	the_post();
+  	$thumbnail = App::get_news_single_field($post->ID,'thumbnail');
+    $image_src = App::get_news_single_field($post->ID,$thumbnail);
+    $image = ($thumbnail === 'url_image') ? 'url("'.$image_src.'") 1x' : Utility::getImageSrcSet($image_src);
   @endphp
     @include('component::news.single',[
 		"data" => $post,
 		"tags" => get_object_term_cache( $post->ID, 'tags' ),
-		"thumbnail" => App::get_news_single_field($post->id,'url_image'),
+		"thumbnail" => $image,
 		"image_position" => App::get_news_single_field($post->id,'image_position'),
 		"excerpt" => App::get_news_single_field($post->id,'excerpt',true),
 		"views" => App::get_news_single_field($post->id,'views'),

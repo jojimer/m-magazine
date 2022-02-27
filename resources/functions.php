@@ -127,7 +127,7 @@ function cc_hide_admin_bar() {
 // Don't run BarbaJS when admin user is logged-in
 function ajax_check_user_is_admin() {
     $user = wp_get_current_user();
-    echo ( in_array( 'subscriber', (array) $user->roles ) || in_array( 'vip-member', (array) $user->roles ) && is_user_logged_in() || !is_user_logged_in()) ? true : false;
+    echo ((in_array( 'subscriber', (array) $user->roles ) && is_user_logged_in() || in_array( 'vip-member', (array) $user->roles ) && is_user_logged_in()) || !is_user_logged_in()) ? true : false;
 }
 
 // Hide CPT Notice
