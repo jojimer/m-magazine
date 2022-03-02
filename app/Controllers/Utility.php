@@ -17,8 +17,8 @@ class Utility extends Controller
 
   public static function acf_thumbnail($id,$size) 
   {
-    //die(var_dump(wp_get_attachment_image_src($id,$size)));
-    return wp_get_attachment_image_src($id,$size)[0];
+    $attachment = wp_get_attachment_image_src($id,$size);
+    if(is_array($attachment)) return $attachment[0];
   }
 
 
