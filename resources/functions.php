@@ -153,13 +153,14 @@ add_action('wp_ajax_is_user_admin', 'ajax_check_user_is_admin');
 add_action('wp_ajax_nopriv_is_user_admin', 'ajax_check_user_is_admin');
 
 // Ajax load custom post content
-add_action('init', function(){    
-    add_rewrite_tag('%offset%','([0-9]+)');
-    add_rewrite_tag('%per_page%','(\[[0-9,]+[0-9]*\])');
+add_action('init', function(){
     add_rewrite_tag('%post_type%','([^&]+)');
+    add_rewrite_tag('%offset%','([0-9]+)');
+    add_rewrite_tag('%per_page%','(\[[0-9,]+[0-9]*\])');    
+    add_rewrite_tag('%h_paged%','([0-9]+)');
 
     // Archive page ajax data link endpoint
-    add_rewrite_rule('content-api/([^&]+)/(\[[0-9,]+[0-9]*\])/([0-9]+)/?', 'index.php?post_type=$matches[1]&offset=$matches[2]&per_page=$matches[3]', 'top');
+    add_rewrite_rule('content-api/([^&]+)/(\[[0-9,]+[0-9]*\])/([0-9]+)/([0-9]+)/?', 'index.php?post_type=$matches[1]&offset=$matches[2]&per_page=$matches[3]&h_paged=$matches[4]', 'top');
 });
 
 add_action('template_redirect', function(){
@@ -170,7 +171,7 @@ add_action('template_redirect', function(){
     $post_type = $wp_query->get('post_type');
     $output = ['content' => '','exclude' => trim($offset,"[]")];
 
-    if(empty($post_type) && !empty($offset) && !empty($per_page)){      
+    if(empty($post_type) && !empty($offset) && !empty($per_page)){   
         $posts = App::getHomeContent($arrayOffset,$per_page);
         ob_start();
         foreach($posts as $post) {
@@ -258,23 +259,23 @@ function my_logged_in_redirect() {
 add_action( 'template_redirect', 'my_logged_in_redirect', 10, 3 );
 
 // ShortCode to get user field-reports in profile page
-function get_fieldreports_by_author( $atts ){
-    $user = uwp_get_displayed_user();
-    if(!$user) return;
+// function get_fieldreports_by_author( $atts ){
+//     $user = uwp_get_displayed_user();
+//     if(!$user) return;
 
-    $args = [
-        'author' => $user->data->ID,
-        'post_type' => 'field-report',
-        'order' => 'DESC',
-        'posts_per_page' => -1,
-    ];
+//     $args = [
+//         'author' => $user->data->ID,
+//         'post_type' => 'field-report',
+//         'order' => 'DESC',
+//         'posts_per_page' => -1,
+//     ];
 
-    $query = get_posts($args);
-    if(count($query) === 0) return;
-    wp_reset_postdata();
-    return App::field_report_by_author($query);
-}
-add_shortcode( 'fieldreports_by_author', 'get_fieldreports_by_author' );
+//     $query = get_posts($args);
+//     if(count($query) === 0) return;
+//     wp_reset_postdata();
+//     return App::field_report_by_author($query);
+// }
+// add_shortcode( 'fieldreports_by_author', 'get_fieldreports_by_author' );
 
 // ShortCode to get user all comments in profile page
 function get_all_comments_by_author( $atts ){

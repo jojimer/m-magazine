@@ -6,7 +6,7 @@ use Sober\Controller\Controller;
 
 class App extends Controller
 {
-    private static $_postPerPage = 3;
+    private static $_postPerPage = 8;
 
     public function siteName()
     {
@@ -57,7 +57,7 @@ class App extends Controller
     }
 
 // HOME PAGE FUNCTIONS
-    private static function getHomeContent($offset,$per_page)
+    public static function getHomeContent($offset,$per_page)
     {
         $args = [
             'post_type' => ['news','gallery','shop-product','field-report','vip-deal'],

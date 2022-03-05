@@ -2,7 +2,7 @@ export default {
 	staticData() {
 		return {
 			'container': $('#dynamic-container'),
-			'posts_per_page': 3,
+			'posts_per_page': 8,
 			'post_type' : {'home' : 'home','news' : 'news', 'galleries' : 'gallery', 'shop' : 'shop-product', 'field-reports' : 'field-report' },
 		}
 	},
@@ -39,7 +39,7 @@ export default {
 		const loadNews = function () {
 			return new Promise((resolve, reject) => {
 			$.ajax({
-					url: '/content-api/'+post_type+'/'+contentLoaded+'/'+staticData.posts_per_page,
+					url: '/content-api/'+post_type+'/'+contentLoaded+'/'+staticData.posts_per_page+'/1/',
 					type: 'GET',
 					success: function (data) {
 						resolve(data)
