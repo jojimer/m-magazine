@@ -343,17 +343,20 @@ class App extends Controller
 
     public static function get_vip_deal_field($id)
     {
-        return get_field('vip_deal',$id);
+        $vip_deal = get_field('vip_deal',$id);
+        $views = get_field('views',$id);
+        return array("vip_deal" => $vip_deal, "views" => $views );
     }
     public static function get_vip_deal_template($deal)
     {
         $vip_deal = App::get_vip_deal_field($deal->ID);
         return \App\template('component::vip-deals.feed',[
-        "deal" => $vip_deal,
-        "tags" => get_object_term_cache( $deal->ID, 'tags' ),
-        "url" => get_permalink($deal->ID),
-        "ID" => $deal->ID,
-      ]);
+            "deal" => $vip_deal["vip_deal"],
+            "views" => $vip_deal["views"],
+            "tags" => get_object_term_cache( $deal->ID, 'tags' ),
+            "url" => get_permalink($deal->ID),
+            "ID" => $deal->ID,
+        ]);
     }
 
 // Get User comments by Author ID

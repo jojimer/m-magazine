@@ -1,0 +1,144 @@
+// News
+@include media-breakpoint-down(lg) {
+  div.news-feed-block {
+    height: 450px !important;
+
+    h2.news-title {
+      font-size: 1.5rem;
+    }
+
+    div.news-info {
+      padding: 1rem 0.75rem !important;
+
+      .news-excerpt {
+        width: 62% !important;
+      }
+
+      .news-meta {
+        margin-top: -0.7rem;
+
+        p {
+          font-size: 1rem !important;
+          margin-bottom: 0.5rem !important;
+        }
+      }
+    }
+  }
+}
+
+// Gallery
+@include media-breakpoint-down(lg) {
+  .gallery-hero-block {
+    height: 400px !important;
+
+    .call-to-action {
+      padding-top: 3.5rem !important;
+
+      .product-main-text {
+        font-size: 3.5rem !important;
+        line-height: 4rem !important;
+      }
+    }
+  }
+
+  .gallery-preview-block {
+    height: 400px !important;
+
+    p.h2 {
+      font-size: 1.5rem !important;
+    }
+
+    .gallery-preview-images {
+      overflow-y: hidden;
+    }
+
+    ol.gallery-slider-wrap {
+      height: 17.5rem !important;
+
+      li.portrait.gallery-slide {
+        height: 20.5rem !important;
+      }
+
+      li.preview-image-btn {
+        height: 18.45rem;
+        padding: 2.5rem;
+      }
+    }
+  }
+}
+
+// Shop
+@include media-breakpoint-down(lg) {
+  .shop-hero-block {
+    height: 400px !important;
+
+    div.call-to-action {
+      padding-bottom: 6rem;
+      text-align: right;
+    }
+  }
+
+  .products-block .product {
+    height: 17rem !important;
+
+    p {
+      font-size: 1.5rem !important;
+    }
+
+    .cta-product-button {
+      display: inline !important;
+
+      a {
+        padding: 0 !important;
+        margin-top: 16vh !important;
+      }
+    }
+  }
+
+  .shop-categories > div {
+    height: 400px !important;
+  }
+}
+
+// Field Report
+@include media-breakpoint-down(lg) {
+  .field-report-block {
+    .content-preview {
+      width: 100% !important;
+      padding: 3rem 2rem 1rem !important;
+      background-position: center;
+      height: 66%;
+
+      .fr-date {
+        margin-top: -30px;
+      }
+    }
+
+    .content-meta-info {
+      width: 100% !important;
+
+      .content-tags,
+      .content-images-preview {
+        display: none;
+      }
+    }
+  }
+}
+
+// VIP Deal
+@include media-breakpoint-down(lg) {
+  .vip-deal-block {
+    .vip-deal-main-text {
+      font-size: 1.5rem !important;
+    }
+
+    .vip-deal-sub-category {
+      font-size: 1rem !important;
+    }
+
+    .vip-icon {
+      width: 60px !important;
+      margin-bottom: 1.7rem !important;
+    }
+  }
+}

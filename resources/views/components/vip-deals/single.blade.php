@@ -10,7 +10,7 @@
 			<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="@asset('images/vip.jpg')" alt="profile-name">
 		</div>
 		<div class="call-to-action">
-			<span>@fas_icon('eye') {{ $vip_deal['views'] }}</span>
+			<span>@fas_icon('eye') {{ $views }}</span>
 		</div>
 	</div>
 	<div class="vip-deal-single-tags-date">

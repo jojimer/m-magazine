@@ -7,7 +7,7 @@
 		<img class="lozad" data-placeholder-background="rgba(0, 0, 0, 0.2)" data-src="@asset('images/vip.jpg')" alt="profile-name">
 	</div>
 	<div class="call-to-action">
-		<span>@fas_icon('eye') {{ $deal['views'] }}</span>	
+		<span>@fas_icon('eye') {{ $views }}</span>	
 		<a href="{{ $url }}" class="btn btn-danger text-white">{{ $deal['button_text'] }}</a>
 	</div>
 </div>
