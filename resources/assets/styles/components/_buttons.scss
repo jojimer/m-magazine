@@ -17,7 +17,7 @@
   .icons-wrap {
     cursor: pointer;
 
-    span:nth-child(1) {
+    & > span:nth-child(1) {
       font-size: 2rem;
       margin-right: 1.25rem;
     }
@@ -29,8 +29,10 @@
     span.avatar-holder:nth-child(2) {
       max-width: 31px;
       max-height: 31px;
+    }
 
-      & > img#profile_avatar {
+    span.avatar-holder:nth-child(3) {
+      img#profile_avatar {
         width: 40px;
         height: 40px;
         border-radius: 100%;

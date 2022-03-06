@@ -1,0 +1,161 @@
+@include media-breakpoint-down(lg) {
+  .banner > div {
+    padding: 0.5rem 0;
+  }
+
+  .responsive-navbar-wrap {
+    div.mobile-menu-bg {
+      width: 0;
+      display: none;
+    }
+
+    &.active-nav div.mobile-menu-bg {
+      content: "";
+      width: 100%;
+      position: fixed;
+      background-color: rgba(0, 0, 0, 0.4);
+      height: 100%;
+      top: 0;
+      right: 0;
+      display: block;
+
+      span {
+        position: absolute;
+        font-size: 2rem;
+        right: 3.5rem;
+        top: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    .responsive-navbar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: $dark;
+      height: 100vh;
+      max-width: 320px;
+      width: 0;
+      overflow: hidden;
+      z-index: 22;
+      padding-top: 60px;
+      -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      transform: translateX(-100%);
+      -webkit-transition: all 0.2s;
+      transition: all 0.2s;
+      flex-direction: column !important;
+
+      li.nav-item {
+        margin-right: 0 !important;
+
+        a.nav-link {
+          padding: 1.25rem 2.5rem !important;
+        }
+
+        &:first-child {
+          margin-top: 245px;
+        }
+
+        &:last-child {
+          position: absolute;
+          width: 100%;
+
+          .icons-wrap {
+            flex-direction: column-reverse;
+            margin-left: auto;
+            width: 100%;
+
+            .search-form {
+              margin-left: -1rem;
+            }
+
+            .search-submit {
+              position: absolute;
+              right: 1.5rem;
+            }
+
+            .avatar-holder {
+              max-width: 100px;
+              max-height: 100px;
+              pointer-events: none;
+
+              #profile_avatar {
+                width: 100px;
+                height: 100px;
+              }
+            }
+
+            .nav-account {
+              position: unset;
+              background: unset;
+              display: unset !important;
+              padding: 0.5rem 0 1rem;
+
+              span {
+                padding: 0 0.5rem;
+
+                a {
+                  color: white !important;
+                }
+              }
+
+              .logged-in-user {
+                display: none !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.active-nav .responsive-navbar {
+      transform: translateX(0);
+      width: 100%;
+      overflow-y: scroll;
+    }
+
+    .menu-toggle {
+      font-size: 1.75rem;
+      cursor: pointer;
+    }
+  }
+
+  body:not(.logged-in) {
+    .navbar-nav {
+      padding-top: 30px;
+
+      li.nav-item:first-child {
+        margin-top: 120px;
+      }
+
+      div.icons-wrap {
+        flex-direction: column !important;
+      }
+
+      .icon-holder {
+        display: none;
+      }
+
+      div.nav-account {
+        color: white;
+        padding: 0.75rem;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+        font-weight: lighter;
+        display: unset !important;
+        background: unset;
+        position: unset;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .d-none-lg {
+    display: none;
+  }
+}

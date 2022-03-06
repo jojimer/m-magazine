@@ -8,6 +8,7 @@
         @php 
             $fr_images = App::get_field_report_field($post->ID,'images');
             $fr_views = App::get_field_report_field($post->ID,'views');
+            Utility::updateViewCount($post->ID);
         @endphp
 
         @include('component::field-report.single',[

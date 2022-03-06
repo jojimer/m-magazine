@@ -4,6 +4,7 @@
   @while(have_posts()) 
   @php 
   	the_post();
+    Utility::updateViewCount($post->ID)
   @endphp
     @include('component::gallery.single',[
     	"data" => $post,

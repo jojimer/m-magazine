@@ -7,6 +7,7 @@
   	$thumbnail = App::get_news_single_field($post->ID,'thumbnail');
     $image_src = App::get_news_single_field($post->ID,$thumbnail);
     $image = ($thumbnail === 'url_image') ? 'url("'.$image_src.'") 1x' : Utility::getImageSrcSet($image_src);
+    Utility::updateViewCount($post->ID);
   @endphp
     @include('component::news.single',[
 		"data" => $post,

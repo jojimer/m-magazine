@@ -26,15 +26,15 @@ $grid-breakpoints: (
   // Extra large screen / wide desktop
   xl: 1200px,
   // Super Extra large screen / wide desktop
-  sxl: 1320px
+  xxl: 1320px
 );
 
 $container-max-widths: (
   sm: 540px,
   md: 720px,
   lg: 960px,
-  xl: 1140px,
-  sxl: 1280px
+  xl: 1200px,
+  xxl: 1280px
 );
 
 @mixin gutter {

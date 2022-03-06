@@ -37,4 +37,11 @@ class Utility extends Controller
 
     return $imagesSet;
   }
+
+  public static function updateViewCount($id)
+  {
+    $incrementedViews = get_field('views',$id);
+    $incrementedViews = $incrementedViews+1;
+    update_field('views', $incrementedViews, $id);
+  }
 }

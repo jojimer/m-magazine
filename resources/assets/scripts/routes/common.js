@@ -37,6 +37,11 @@ export default {
     $(document).on('mouseleave','.nav-account',function(){
       $(this).toggleClass('d-none');
     })
+
+    // Mobile Menu Toggle
+    $(document).on('click','.menu-toggle, div.mobile-menu-bg, .responsive-navbar .nav-link, .nav-account a, input.search-submit',function(){
+      $('.responsive-navbar-wrap').toggleClass('active-nav');
+    })  
   },
   finalize() {
     // JavaScript to be fired on all pages, after page specific JS is fired
