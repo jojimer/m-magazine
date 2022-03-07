@@ -7,6 +7,10 @@
       font-size: 1.5rem;
     }
 
+    .news-feed-control {
+      opacity: 1 !important;
+    }
+
     div.news-info {
       padding: 1rem 0.75rem !important;
 
@@ -80,16 +84,18 @@
 
   .products-block .product {
     height: 17rem !important;
+    flex: 0 0 49% !important;
 
     p {
-      font-size: 1.5rem !important;
+      font-size: 1.25rem !important;
     }
 
     .cta-product-button {
       display: inline !important;
+      border-radius: 10px;
 
       a {
-        padding: 0 !important;
+        padding: 0.5rem 1rem !important;
         margin-top: 16vh !important;
       }
     }
@@ -139,6 +145,41 @@
     .vip-icon {
       width: 60px !important;
       margin-bottom: 1.7rem !important;
+    }
+  }
+}
+
+// UWP Content 
+@include media-breakpoint-down(lg) {
+  .uwp-profile-tabs {
+    .border-bottom:not(.nav-item) {
+      padding-bottom: 3rem;
+
+      #uwp-profile-tabs-nav {
+        display: unset !important;
+      }
+
+      button.navbar-toggler {
+        display: none !important;
+      }
+    }
+  }
+
+  #uwp-profile-content {
+    #toggle-fr-form {
+      margin-top: 0 !important;
+    }
+
+    .img-thumb-wrap.fr-link {
+      font-size: 1.5rem;
+    }
+  }
+
+  #tab-content {
+    #fr-content {
+      ul.nav.nav-tabs {
+        display: none;
+      }
     }
   }
 }

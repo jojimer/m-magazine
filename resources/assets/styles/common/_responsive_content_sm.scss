@@ -1,0 +1,93 @@
+// News
+@include media-breakpoint-down(sm) {
+  div.news-feed-block {
+    div.news-info div.news-excerpt {
+      width: 100% !important;
+    }
+
+    .news-meta {
+      display: none;
+    }
+
+    h2.news-title {
+      font-size: 1.25rem !important;
+      padding-right: 1rem;
+    }
+  }
+}
+
+// Gallery
+@include media-breakpoint-down(sm) {
+  .gallery-hero-block .hero-wrap .call-to-action.cta-top-left {
+    width: 80%;
+    padding: 0;
+    margin: auto;
+
+    p.product-main-text {
+      font-size: 2.75rem !important;
+    }
+  }
+
+  .gallery-preview-block {
+    display: none !important;
+  }
+}
+
+// Shop
+@include media-breakpoint-down(sm) {
+  .shop-hero-block .hero-wrap .call-to-action {
+    width: 95% !important;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5.5rem !important;
+    padding-top: 5.5rem !important;
+
+    .product-sub-category {
+      width: 100%;
+      margin-bottom: 1.25rem;
+    }
+
+    .product-main-text {
+      margin-bottom: 2rem;
+      font-size: 3rem !important;
+    }
+
+    a.btn {
+      width: 100%;
+    }
+  }
+
+  .shop-categories > div {
+    width: 100% !important;
+
+    &:first-child {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+// Field Report
+@include media-breakpoint-down(sm) {
+  .field-report-block {
+    .content-preview {
+      height: 50%;
+    }
+
+    .fr-info p.h2 {
+      font-size: 1.5rem;
+    }
+  }
+
+  button#toggle-fr-form {
+    width: 80%;
+    margin: auto !important;
+  }
+}
+
+// Single Pages
+@include media-breakpoint-down(lg) {
+  .bookmark-views-wrap,
+  .news-single-bookmark-wrap > span {
+    margin-top: 0 !important;
+  }
+}

@@ -159,3 +159,37 @@
     display: none;
   }
 }
+
+@include media-breakpoint-down(sm) {
+  div.menu-toggle {
+    margin-right: 1rem;
+  }
+
+  #loading-content p {
+    font-size: 1.5rem !important;
+  }
+
+  .search-form .search-submit {
+    top: 0.5rem !important;
+  }
+
+  .responsive-navbar-wrap.active-nav div.mobile-menu-bg span {
+    top: 1rem;
+    right: 2rem;
+  }
+
+  body:not(.logged-in) .navbar-nav div.nav-account {
+    margin-top: 0;
+  }
+
+  body.logged-in {
+    .search-form {
+      position: relative;
+
+      input.search-submit {
+        right: -1rem !important;
+        top: 0 !important;
+      }
+    }
+  }
+}
