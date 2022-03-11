@@ -18,12 +18,14 @@ export default {
   init() {
     // JavaScript to be fired on all pages
     $.post(ajax_object.ajax_url, {action: 'is_user_admin'}, function (notAdmin) {
-        if (notAdmin){
-          barba.init();          
+        if (notAdmin == 0){
+          barba.init();
+          console.log('true',notAdmin);    
         }        
         else{
           lozad.init('.lozad').observe();
           lozad.init('.bg-lozad').observe();
+          console.log('false',notAdmin);
         }
     });
 
